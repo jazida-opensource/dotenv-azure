@@ -1,105 +1,118 @@
-// Import here Polyfills if needed. Recommended core-js (npm i -D core-js)
-// import "core-js/fn/array.find"
-// ...
-import dotenv, {
-  DotenvConfigOptions,
-  DotenvParseOptions,
-  DotenvConfigOutput,
-  DotenvParseOutput
-} from 'dotenv'
-import {
-  ClientSecretCredential,
-  ManagedIdentityCredential,
-  ChainedTokenCredential
-} from '@azure/identity'
+import { URL } from 'url'
+import dotenv, { DotenvConfigOptions, DotenvParseOptions, DotenvParseOutput } from 'dotenv'
+import { DefaultAzureCredential, TokenCredential, ManagedIdentityCredential } from '@azure/identity'
 import { SecretsClient } from '@azure/keyvault-secrets'
-import { AppConfigurationManagementClient } from '@azure/arm-appconfiguration'
-import * as msRestNodeAuth from '@azure/ms-rest-nodeauth'
-import { ServiceClientCredentials } from '@azure/ms-rest-js'
-import { ConfigurationStoresListResponse } from '@azure/arm-appconfiguration/esm/models'
+import { AppConfigurationClient } from './app-config'
+import { ConfigurationSetting } from './app-config/generated/models'
 
 export type VariablesObject = { [name: string]: string }
 
-export interface AzureClientSecretCredentials {
+export interface AzureCredentials {
+  appConfigUrl?: string
+  appConfigConnectionString?: string
   clientId?: string
   clientSecret?: string
   tenantId?: string
 }
 
-export interface AppConfigCredentials extends AzureClientSecretCredentials {
-  subscriptionId: string
-}
-
-export interface KeyVaultCredentials extends AzureClientSecretCredentials {
-  vaultName: string
-}
-
 export interface DotenvAzureConfig {
-  safe: boolean
-  appConfig: AppConfigCredentials
-  keyVault: KeyVaultCredentials
+  safe?: boolean
 }
 
-export { dotenv }
+export interface DotenvAzureConfigOutput {
+  dotenv: DotenvParseOutput
+  azure: VariablesObject
+  parsed: VariablesObject
+}
 
-export default class DotenvAzure {
-  credentials: {
-    appConfig: AppConfigCredentials
-    keyVault: KeyVaultCredentials
+export type DotenvAzureParseOutput = DotenvParseOutput
+
+class DotenvAzure {
+  private readonly safe: boolean
+  private readonly keyVaultClients: { [vaultURL: string]: SecretsClient }
+  private readonly azureCredential: TokenCredential
+
+  constructor({ safe = false }: DotenvAzureConfig) {
+    this.safe = safe
+    this.keyVaultClients = {}
+    this.azureCredential = new DefaultAzureCredential()
   }
 
-  constructor({ appConfig, keyVault }: DotenvAzureConfig) {
-    this.credentials = { appConfig, keyVault }
-  }
+  async config(options: DotenvConfigOptions): Promise<DotenvAzureConfigOutput> {
+    const { error, parsed } = dotenv.config(options)
+    if (error || !parsed) {
+      throw error
+    }
 
-  async config(options: DotenvConfigOptions): Promise<DotenvConfigOutput> {
-    try {
-      const dotenvOutput = dotenv.config(options)
-      if (dotenvOutput.error) {
-        throw dotenvOutput.error
-      }
+    const azureVars = await this.loadFromAzure(parsed)
+    this.populateProcessEnv(azureVars)
+    this.validateFromEnvExample()
 
-      const azureVars = await this.loadFromAzure()
-      this.populateProcessEnv(azureVars)
-      this.validateFromEnvExample()
-
-      return {
-        parsed: { ...azureVars, ...dotenvOutput.parsed }
-      }
-    } catch (error) {
-      return { error }
+    return {
+      dotenv: parsed,
+      azure: azureVars,
+      parsed: { ...azureVars, ...parsed }
     }
   }
 
-  async parse(src: string, options: DotenvParseOptions): Promise<DotenvParseOutput> {
+  async parse(src: string, options: DotenvParseOptions): Promise<DotenvAzureParseOutput> {
     const dotenvVars = dotenv.parse(src, options)
-    const azureVars = await this.loadFromAzure()
+    const azureVars = await this.loadFromAzure(dotenvVars)
     return { ...azureVars, ...dotenvVars }
   }
 
-  async loadFromAzure(): Promise<VariablesObject> {
+  async loadFromAzure(dotenvVars: DotenvParseOutput): Promise<VariablesObject> {
+    const credentials = this.getCredentials(dotenvVars)
+    const appConfigClient = this.getAppConfigClient(credentials)
+    const appConfigVars = await this.getVariablesFromAppConfig(appConfigClient)
+    const keyVaultSecrets = await this.getSecretsFromKeyVault(appConfigVars)
+    return { ...appConfigVars, ...keyVaultSecrets }
+  }
+
+  protected populateProcessEnv(variables: VariablesObject): void {
+    // Add variable if does not exist in process.env
+    Object.entries(variables).forEach(([key, val]) => key in process.env || (process.env[key] = val))
+  }
+
+  protected validateFromEnvExample(): void {
+    // TODO:
+  }
+
+  protected async getVariablesFromAppConfig(client: AppConfigurationClient): Promise<VariablesObject> {
+    let vars: VariablesObject = {}
+    const request = await client.listConfigurationSettings()
+    const body = request._response.parsedBody
+    console.log(body)
+
+    if (body.items) {
+      vars = body.items
+        .filter(item => item.key)
+        .reduce(
+          (acc, item: ConfigurationSetting) => ({
+            ...acc,
+            [item.key || Symbol()]: item.value || ''
+          }),
+          {} as VariablesObject
+        )
+    }
+
+    return vars
+  }
+
+  protected async getSecretsFromKeyVault(vars: VariablesObject): Promise<VariablesObject> {
     let secrets: VariablesObject = {}
 
-    const keyVaultClient = this.buildKeyVaultClient()
-    const appConfigClient = await this.buildAppConfigClient()
-
-    let nextLink
-    do {
-      const response: ConfigurationStoresListResponse = nextLink
-        ? await appConfigClient.configurationStores.listNext(nextLink)
-        : await appConfigClient.configurationStores.list()
-
-      console.log(response._response.parsedBody)
-      nextLink = response.nextLink
-    } while (nextLink)
-
-    for (const [key, value] of Object.entries(secrets)) {
-      if (value.startsWith('kv:')) {
-        delete secrets[key]
-        const keyvaultURL = value.replace('kv:', '')
-        const res = await keyVaultClient.getSecret(keyvaultURL)
+    for (const [key, value] of Object.entries(vars)) {
+      const keyVaultUrl = this.testIfValueIsVaultSecret(value)
+      if (keyVaultUrl) {
+        const baseUrl = `${keyVaultUrl.protocol}//${keyVaultUrl.hostname}`
+        const [, , secretName, secretVersion] = keyVaultUrl.pathname.split('/')
+        if (!secretName || !secretVersion) {
+          throw new Error(`Invalid Azure Key Vault URL: ${key}`)
+        }
+        const res = await this.getKeyVaultClient(baseUrl).getSecret(secretName, { version: secretVersion })
         if (res.value) {
-          secrets[key] = res.value
+          vars[key] = res.value
         }
       }
     }
@@ -107,41 +120,49 @@ export default class DotenvAzure {
     return secrets
   }
 
-  protected populateProcessEnv(variables: VariablesObject): void {
-    // Add if variable does not exist in process.env
-    Object.entries(variables).forEach(
-      ([key, val]) => key in process.env || (process.env[key] = val)
-    )
+  protected getAppConfigClient(credentials: AzureCredentials): AppConfigurationClient {
+    const { appConfigUrl = '', appConfigConnectionString } = credentials
+    if (appConfigConnectionString) {
+      return new AppConfigurationClient(appConfigConnectionString)
+    } else {
+      return new AppConfigurationClient(appConfigUrl, new ManagedIdentityCredential())
+    }
   }
 
-  protected validateFromEnvExample(): void {
-    // TODO:
+  protected getKeyVaultClient(vaultURL: string) {
+    if (!this.keyVaultClients[vaultURL]) {
+      this.keyVaultClients[vaultURL] = new SecretsClient(vaultURL, this.azureCredential)
+    }
+    return this.keyVaultClients[vaultURL]
   }
 
-  protected buildKeyVaultClient(): SecretsClient {
-    const { vaultName, tenantId = '', clientId = '', clientSecret = '' } = this.credentials.keyVault
-    const managedIdentityCreds = new ManagedIdentityCredential()
-    const servicePrincipalCreds = new ClientSecretCredential(tenantId, clientId, clientSecret)
-    const credentialChain = new ChainedTokenCredential(managedIdentityCreds, servicePrincipalCreds)
-    const url = `https://${vaultName}.vault.azure.net`
-    return new SecretsClient(url, credentialChain)
-  }
-
-  protected async buildAppConfigClient(): Promise<AppConfigurationManagementClient> {
-    const {
-      subscriptionId,
-      clientId = '',
-      clientSecret = '',
-      tenantId = ''
-    } = this.credentials.appConfig
-
-    let creds: ServiceClientCredentials
+  private testIfValueIsVaultSecret(value: string): URL | undefined {
+    const result = /^kv:(.+)/.exec(value)
+    let keyVaultUrl
     try {
-      creds = await msRestNodeAuth.loginWithVmMSI()
+      keyVaultUrl = result ? new URL(result[1]) : undefined
     } catch {
-      creds = await msRestNodeAuth.loginWithServicePrincipalSecret(clientId, clientSecret, tenantId)
+      // noop
     }
 
-    return new AppConfigurationManagementClient(creds, subscriptionId)
+    return keyVaultUrl
+  }
+
+  private getCredentials(dotenvVars: DotenvParseOutput): AzureCredentials {
+    const vars = dotenvVars || process.env
+    if (!vars.AZURE_APP_CONFIG_URL && !vars.AZURE_APP_CONFIG_URL) {
+      throw new Error('Environment variable AZURE_APP_CONFIG_URL is required.')
+    }
+
+    return {
+      appConfigUrl: vars.AZURE_APP_CONFIG_URL,
+      appConfigConnectionString: vars.AZURE_APP_CONFIG_CONNECTION_STRING,
+      tenantId: vars.AZURE_TENANT_ID,
+      clientId: vars.AZURE_CLIENT_ID,
+      clientSecret: vars.AZURE_CLIENT_SECRET
+    }
   }
 }
+
+export { DotenvAzure, dotenv }
+export default DotenvAzure
