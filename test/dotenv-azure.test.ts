@@ -1,14 +1,5 @@
-import DummyClass from '../src/dotenv-azure'
+import DotenvAzure from '../src/dotenv-azure'
 
-/**
- * Dummy test
- */
-describe('Dummy test', () => {
-  it('works if true is truthy', () => {
-    expect(true).toBeTruthy()
-  })
-
-  it('DummyClass is instantiable', () => {
-    expect(new DummyClass()).toBeInstanceOf(DummyClass)
-  })
+test('DotenvAzure is instantiable', () => {
+  expect(new DotenvAzure()).toBeInstanceOf(DotenvAzure)
 })

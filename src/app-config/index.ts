@@ -103,6 +103,11 @@ export class AppConfigurationClient {
   // tslint:disable-next-line: unified-signatures
   constructor(uri: string, credential: TokenCredential)
   constructor(uriOrConnectionString: string, credential?: TokenCredential) {
+    // tslint:disable-next-line: strict-type-predicates
+    if (uriOrConnectionString == null) {
+      throw new Error('You must provide a connection string or the URL for your AppConfiguration instance')
+    }
+
     const regexMatch = uriOrConnectionString.match(ConnectionStringRegex)
     if (regexMatch) {
       const credential = new AppConfigCredential(regexMatch[2], regexMatch[3])
@@ -110,7 +115,7 @@ export class AppConfigurationClient {
         baseUri: regexMatch[1],
         deserializationContentTypes
       })
-    } else if (credential) {
+    } else if (credential && credential.constructor.name === 'ManagedIdentityCredential') {
       this.client = new ConfigurationClient(credential, {
         baseUri: uriOrConnectionString,
         deserializationContentTypes

@@ -8,6 +8,8 @@
  * regenerated.
  */
 
+// tslint:disable: strict-type-predicates
+
 import * as Models from './models'
 import * as coreHttp from '@azure/core-http'
 import * as coreArm from '@azure/core-arm'
@@ -28,6 +30,7 @@ export class ConfigurationClientContext extends coreArm.AzureServiceClient {
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     options?: Models.ConfigurationClientOptions
   ) {
+    // tslint:disable-next-line: triple-equals
     if (credentials == undefined) {
       throw new Error("'credentials' cannot be null.")
     }
