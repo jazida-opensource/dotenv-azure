@@ -123,18 +123,21 @@ export default class DotenvAzure {
   ): Promise<VariablesObject> {
     let secrets: VariablesObject = {}
 
-    for (const [key, value] of Object.entries(vars)) {
-      const keyVaultUrl = testIfValueIsVaultSecret(value)
-      if (keyVaultUrl) {
+    await Promise.all(
+      Object.entries(vars).map(async ([key, value]) => {
+        const keyVaultUrl = testIfValueIsVaultSecret(value)
+        if (!keyVaultUrl) return
+
         const [, , secretName, secretVersion] = keyVaultUrl.pathname.split('/')
         if (!secretName || !secretVersion) {
           throw new InvalidKeyVaultUrlError(key.replace('kv:', ''))
         }
+
         const keyVaultClient = this.getKeyVaultClient(credentials, keyVaultUrl.origin)
         const response = await keyVaultClient.getSecret(secretName, { version: secretVersion })
         secrets[key] = response.value || ''
-      }
-    }
+      })
+    )
 
     return secrets
   }
