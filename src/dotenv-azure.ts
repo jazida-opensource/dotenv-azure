@@ -184,4 +184,4 @@ export default class DotenvAzure {
   }
 }
 
-export { dotenv, DotenvAzure, MissingEnvVarsError, InvalidKeyVaultUrlError as InvalidKeyVaultUrl }
+export { dotenv, DotenvAzure, MissingEnvVarsError, InvalidKeyVaultUrlError }
