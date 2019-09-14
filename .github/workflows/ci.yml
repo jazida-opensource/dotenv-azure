@@ -23,4 +23,6 @@ jobs:
         env:
           CI: true
       - run: yarn build
-      - run: yarn report-coverage
+      - uses: codecov/codecov-action@v1.0.2
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
