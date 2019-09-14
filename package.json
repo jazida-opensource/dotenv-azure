@@ -33,7 +33,7 @@
     "node": ">=8.0.0"
   },
   "scripts": {
-    "lint": "tslint --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
+    "lint": "eslint . --ext .ts",
     "prebuild": "rimraf dist",
     "build": "tsc && typedoc --out docs --target es6 --theme minimal --mode file src",
     "start": "tsc --watch",
@@ -46,6 +46,7 @@
     "semantic-release": "semantic-release",
     "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
     "precommit": "lint-staged",
+    "prepublish": "yarn build",
     "travis-deploy-once": "travis-deploy-once"
   },
   "lint-staged": {
@@ -102,11 +103,21 @@
     "@types/dotenv": "^6.1.1",
     "@types/jest": "^24.0.18",
     "@types/node": "^10",
+    "@types/shelljs": "^0.8.5",
+    "@typescript-eslint/eslint-plugin": "^2.2.0",
+    "@typescript-eslint/parser": "^2.2.0",
     "colors": "^1.3.3",
     "commitizen": "^4.0.3",
     "coveralls": "^3.0.6",
     "cross-env": "^5.2.1",
     "cz-conventional-changelog": "^3.0.2",
+    "eslint": "^6.4.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
     "husky": "^3.0.5",
     "jest": "^24.9.0",
     "jest-config": "^24.9.0",
