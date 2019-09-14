@@ -52,6 +52,7 @@
   "lint-staged": {
     "{src,test}/**/*.ts": [
       "prettier --write",
+      "eslint --fix",
       "git add"
     ]
   },
@@ -119,6 +120,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "husky": "^3.0.5",
+    "is-ci-cli": "^1.1.1",
     "jest": "^24.9.0",
     "jest-config": "^24.9.0",
     "lint-staged": "^9.2.5",

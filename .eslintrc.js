@@ -12,15 +12,14 @@ module.exports = {
     sourceType: 'module'
   },
   env: {
-    node: true
+    node: true,
+    jest: true
   },
   rules: {
     '@typescript-eslint/member-delimiter-style': 0,
     'no-multi-str': 0,
     'no-useless-constructor': 0,
     '@typescript-eslint/no-useless-constructor': 1,
-    'no-dupe-class-members': 0,
-    '@typescript-eslint/prefer-regexp-exec': 0,
-    'no-self-assign': 0
+    'no-dupe-class-members': 0
   }
 }
