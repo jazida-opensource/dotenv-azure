@@ -65,3 +65,5 @@ jobs:
       - if: github.event_name != 'pull_request' && github.ref == 'master'
         name: Create release
         run: yarn semantic-release
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
