@@ -17,25 +17,33 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install, test and build
-        run: |
-          yarn --frozen-lockfile
-          yarn lint
-          yarn format:check
-          yarn test
-          yarn build
+
+      - name: Install
+        run: yarn --frozen-lockfile
         env:
           CI: true
 
-  report-coverage:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: codecov/codecov-action@v1.0.2
-        name: Report coverage
-        with:
-          token: ${{secrets.CODECOV_TOKEN}}
+      - name: Lint
+        run: yarn lint
+
+      - name: Check code format
+        run: yarn format:check
+
+      - name: Test
+        run: yarn test
+        env:
+          CI: true
+
+      - name: Build
+        run: yarn build
+        env:
+          CI: true
+
+      - name: Report coverage
+        if: startsWith(matrix.node_version, '10')
+        run: yarn codecov
+        env:
+          CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
 
   deploy-docs:
     needs: build
