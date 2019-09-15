@@ -55,12 +55,14 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "config": {
     "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
+      "path": "cz-conventional-changelog"
     }
   },
   "commitlint": {
