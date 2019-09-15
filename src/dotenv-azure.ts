@@ -32,7 +32,7 @@ export default class DotenvAzure {
   }
 
   /**
-   * Loads your Azure App Configuration and Key Vault variables
+   * Loads Azure App Configuration and Key Vault variables
    * and `.env` file contents into {@link https://nodejs.org/api/process.html#process_process_env | `process.env`}.
    * Example: 'KEY=value' becomes { parsed: { KEY: 'value' } }
    * @param options - controls behavior

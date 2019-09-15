@@ -1,0 +1,7 @@
+{
+  "mode": "file",
+  "out": "docs",
+  "target": "es6",
+  "theme": "minimal",
+  "exclude": "src/app-config/**/*.ts"
+}

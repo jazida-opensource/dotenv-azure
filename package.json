@@ -36,7 +36,7 @@
     "format": "prettier '**/*.ts' --write",
     "format:check": "prettier '**/*.ts' --check",
     "prebuild": "rimraf dist",
-    "build": "tsc && typedoc --out docs --target es6 --theme minimal --mode file src",
+    "build": "tsc && typedoc",
     "start": "tsc --watch",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watch",
@@ -49,7 +49,7 @@
     "{src,test}/**/*.ts": [
       "prettier --write",
       "eslint --fix",
-      "yarn test",
+      "jest --bail --findRelatedTests",
       "git add"
     ]
   },
