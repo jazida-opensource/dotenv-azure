@@ -1,6 +1,6 @@
 {
   "name": "dotenv-azure",
-  "version": "1.0.0-alpha.1",
+  "version": "0.0.0-development",
   "description": "",
   "keywords": [
     "dotenv",
@@ -26,7 +26,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jazida-user/dotenv-azure"
+    "url": "https://github.com/danielfsousa/dotenv-azure"
   },
   "license": "MIT",
   "engines": {
@@ -44,8 +44,7 @@
     "validate": "yarn lint && yarn format:check && yarn test",
     "deploy-docs": "ts-node tools/gh-pages-publish",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
-    "commit": "git-cz",
-    "semantic-release-prepare": "ts-node tools/semantic-release-prepare"
+    "commit": "git-cz"
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
