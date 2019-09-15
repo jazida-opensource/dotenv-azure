@@ -8,11 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [10, 12]
-
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js
@@ -21,7 +19,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install, test and build
         run: |
-          yarn
+          yarn --frozen-lockfile
           yarn lint
           yarn format:check
           yarn test
