@@ -40,7 +40,7 @@ jobs:
           CI: true
 
       - name: Report coverage
-        if: startsWith(matrix.node_version, '10')
+        if: startsWith(matrix.node, '10')
         run: yarn codecov
         env:
           CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
