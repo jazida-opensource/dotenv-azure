@@ -45,25 +45,16 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-  deploy-docs:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - if: github.ref == 'master'
-        name: Deploy docs
+      - name: Deploy docs
+        if: startsWith(matrix.node-version, '10') && github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: peaceiris/actions-gh-pages@v2.3.0
         env:
           ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: ./docs
 
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - if: github.ref == 'master'
-        name: Create release
+      - name: Create release
+        if: startsWith(matrix.node-version, '10') && github.event_name == 'push'
         run: yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
