@@ -1,6 +1,9 @@
 name: CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - '*'
 
 jobs:
   build:
@@ -16,13 +19,24 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: yarn
-      - run: yarn lint
-      - run: yarn format:check
-      - run: yarn test
+      - run: |
+          yarn
+          yarn lint
+          yarn format:check
+          yarn test
+          yarn build
         env:
           CI: true
-      - run: yarn build
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
       - uses: codecov/codecov-action@v1.0.2
         with:
           token: ${{secrets.CODECOV_TOKEN}}
+      - if: github.event_name != 'pull_request' && github.ref == 'master'
+        run: yarn deploy-docs
+      - if: github.event_name != 'pull_request' && github.ref == 'master'
+        run: yarn semantic-release
