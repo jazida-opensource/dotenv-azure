@@ -1,7 +1,7 @@
 {
   "name": "dotenv-azure",
   "version": "0.0.0-development",
-  "description": "",
+  "description": "Load environment variables from Azure's services App Configuration, Key Vault or a .env file",
   "keywords": [
     "dotenv",
     "dotenv-safe",
@@ -14,8 +14,7 @@
     "env"
   ],
   "main": "dist/lib/dotenv-azure.js",
-  "module": "dist/dotenv-azure.es5.js",
-  "typings": "dist/types/dotenv-azure.d.ts",
+  "types": "dist/types/dotenv-azure.d.ts",
   "files": [
     "dist"
   ],
