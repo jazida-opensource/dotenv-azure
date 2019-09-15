@@ -1,10 +1,10 @@
 # dotenv-azure
 
-[![BuildStatus](https://img.shields.io/travis/motdotla/dotenv/master.svg?style=flat-square)](https://travis-ci.org/motdotla/dotenv)
-[![NPM version](https://img.shields.io/npm/v/dotenv.svg?style=flat-square)](https://www.npmjs.com/package/dotenv)
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/feross/standard)
-[![Coverage Status](https://img.shields.io/coveralls/motdotla/dotenv/master.svg?style=flat-square)](https://coveralls.io/github/motdotla/dotenv?branch=coverall-intergration)
-[![LICENSE](https://img.shields.io/github/license/motdotla/dotenv.svg)](LICENSE)
+![Build status](https://github.com/danielfsousa/dotenv-azure/workflows/ci/badge.svg)
+[![codecov](https://codecov.io/gh/danielfsousa/dotenv-azure/branch/master/graph/badge.svg)](https://codecov.io/gh/danielfsousa/dotenv-azure)
+[![NPM version](https://img.shields.io/npm/v/dotenv-azure.svg)](https://www.npmjs.com/package/dotenv)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
+[![LICENSE](https://img.shields.io/github/license/danielfsousa/dotenv-azure.svg)](LICENSE)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 Load environment variables from Azure's services [App Configuration](https://azure.microsoft.com/en-us/services/app-configuration/), [Key Vault](https://azure.microsoft.com/en-us/services/key-vault/) or a `.env` file with an api similar to [dotenv](https://github.com/motdotla/dotenv).
