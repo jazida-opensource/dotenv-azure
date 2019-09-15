@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - if: github.event_name != 'pull_request' && github.ref == 'master'
+      - if: github.ref == 'master'
         name: Deploy docs
         uses: peaceiris/actions-gh-pages@v2.3.0
         env:
@@ -62,7 +62,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - if: github.event_name != 'pull_request' && github.ref == 'master'
+      - if: github.ref == 'master'
         name: Create release
         run: yarn semantic-release
         env:
