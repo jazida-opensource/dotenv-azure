@@ -81,14 +81,14 @@ async function main () {
 main()
 ```
 
-#### Using dotenv-azure
+#### Using dotenv-azure programmatically
 
-You should call `dotenv-azure` rigth after the initialization of your app. Since the method `.config()` returns a promise, you have to call it inside an async function:
+You should call `dotenv-azure` before the initialization of your app. Since the method `.config()` returns a promise, you have to call it inside an async function:
 ```javascript
 const DotenvAzure = require('dotenv-azure')
-const dotenvAzure = new DotenvAzure()
 
 async function main () {
+  const dotenvAzure = new DotenvAzure()
   const { parsed } = await dotenvAzure.config()
 
   // `parsed` is an object containing:
@@ -100,18 +100,38 @@ async function main () {
 
   // process.env now has the keys and values from the parsed result
   console.log(process.env)
+
+  // start app
+  // ...
 }
 
 main()
 ```
 
-## Preload
+#### Preload dotenv-azure
 
-TODO
+You can use the `--require` (`-r`) [command line option](https://nodejs.org/api/cli.html#cli_r_require_module) to preload `dotenv-azure`. By doing this, you do not need to require and load `dotenv-azure` in your application code.
+
+```bash
+node -r dotenv-azure/config your_script.js
+```
+
+To enable [safe mode](https://danielfsousa.github.io/dotenv-azure/interfaces/dotenvazureconfigoptions.html#safe) you should require `config-safe`:
+
+```bash
+node -r dotenv-azure/config-safe your_script.js
+```
 
 ## Rules
 
-TODO
+`dotenv-azure` uses `dotenv` under the covers, so the same [rules](https://github.com/motdotla/dotenv/blob/master/README.md#rules) for `.env` files apply here as well.
+
+When populating `process.env` `dotenv-azure` will follow these steps:
+
+1. Values within the process's environment (i.e. an environment variable exists) takes precedence over everything else.
+2. For values defined in the `.env` file, and not present in the environemnt, `process.env` will be populated with those values.
+3. `dotenv-azure` will search for the required environment variables to access azure's services after loading variables from the `.env` file.
+4. For values defined within the process's environment, in the `.env` file or in the Azure App Configuration, where the value is prefixed with `kv:` what follows is assumed to be the secret identifier of a secret stored in Key Vault, and so `dotenv-azure` will attempt to populate the value from Key Vault.
 
 ## Options
 
