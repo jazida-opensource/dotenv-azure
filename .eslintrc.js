@@ -21,5 +21,14 @@ module.exports = {
     'no-useless-constructor': 0,
     '@typescript-eslint/no-useless-constructor': 1,
     'no-dupe-class-members': 0
-  }
+  },
+  overrides: [
+    {
+      files: ['*.js'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 0,
+        '@typescript-eslint/explicit-function-return-type': 0
+      }
+    }
+  ]
 }

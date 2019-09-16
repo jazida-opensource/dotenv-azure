@@ -28,3 +28,11 @@ export function testIfValueIsVaultSecret(value: string): URL | undefined {
   }
   return keyVaultUrl
 }
+
+/**
+ * Add variable if does not exist in process.env
+ * @param variables - an object with keys and values
+ */
+export function populateProcessEnv(variables: VariablesObject): void {
+  Object.entries(variables).forEach(([key, val]) => key in process.env || (process.env[key] = val))
+}

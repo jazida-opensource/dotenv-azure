@@ -2,7 +2,7 @@ import * as fs from 'fs'
 import dotenv, { DotenvParseOptions, DotenvParseOutput } from 'dotenv'
 import { ManagedIdentityCredential, ClientSecretCredential } from '@azure/identity'
 import { SecretsClient } from '@azure/keyvault-secrets'
-import { testIfValueIsVaultSecret, compact, difference } from './utils'
+import { testIfValueIsVaultSecret, compact, difference, populateProcessEnv } from './utils'
 import { MissingEnvVarsError, InvalidKeyVaultUrlError } from './errors'
 import {
   DotenvAzureOptions,
@@ -47,7 +47,7 @@ export default class DotenvAzure {
     const azureVars = await this.loadFromAzure(parsed)
     const joinedVars = { ...azureVars, ...parsed }
 
-    this.populateProcessEnv(azureVars)
+    populateProcessEnv(azureVars)
     if (safe) {
       this.validateFromEnvExample(options, error)
     }
@@ -85,15 +85,6 @@ export default class DotenvAzure {
     const appConfigVars = await this.getVariablesFromAppConfig(appConfigClient)
     const keyVaultSecrets = await this.getSecretsFromKeyVault(credentials, appConfigVars)
     return { ...appConfigVars, ...keyVaultSecrets }
-  }
-
-  /**
-   * Add variable if does not exist in process.env
-   * @param variables - an object with keys and values
-   */
-  protected populateProcessEnv(variables: VariablesObject): void {
-    //
-    Object.entries(variables).forEach(([key, val]) => key in process.env || (process.env[key] = val))
   }
 
   protected validateFromEnvExample(options: DotenvAzureConfigOptions, dotenvError?: Error): void {
