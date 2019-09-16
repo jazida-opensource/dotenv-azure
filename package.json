@@ -16,7 +16,10 @@
   "main": "dist/lib/dotenv-azure.js",
   "types": "dist/types/dotenv-azure.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "config.js",
+    "config-rpc.js",
+    "config-safe.js"
   ],
   "author": {
     "name": "Daniel Sousa",
