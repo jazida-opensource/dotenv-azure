@@ -1,4 +1,4 @@
-import { DotenvConfigOptions, DotenvParseOutput } from 'dotenv'
+import { DotenvConfigOptions, DotenvConfigOutput } from 'dotenv'
 
 export interface AzureCredentials {
   appConfigUrl?: string
@@ -42,9 +42,9 @@ export interface DotenvAzureConfigOptions extends DotenvConfigOptions {
 
 export interface DotenvAzureConfigOutput {
   /**
-   * An object with keys and values
+   * The result of dotenv.config()
    */
-  dotenv: DotenvParseOutput
+  dotenv: DotenvConfigOutput
 
   /**
    * Variables from Azure App Configuration and Key Vault
