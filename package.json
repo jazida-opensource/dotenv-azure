@@ -75,6 +75,8 @@
   "devDependencies": {
     "@commitlint/cli": "^8.1.0",
     "@commitlint/config-conventional": "^8.1.0",
+    "@semantic-release/changelog": "^3.0.4",
+    "@semantic-release/git": "^7.1.0-beta.3",
     "@types/dotenv": "^6.1.1",
     "@types/jest": "^24.0.18",
     "@types/node": "^10",
