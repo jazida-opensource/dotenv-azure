@@ -2414,6 +2414,9 @@ img {
 			<a href="globals.html#difference" class="tsd-kind-icon">difference</a>
 		</li>
 		<li class=" tsd-kind-function">
+			<a href="globals.html#populateprocessenv" class="tsd-kind-icon">populate<wbr>Process<wbr>Env</a>
+		</li>
+		<li class=" tsd-kind-function">
 			<a href="globals.html#testifvalueisvaultsecret" class="tsd-kind-icon">test<wbr>IfValue<wbr>IsVault<wbr>Secret</a>
 		</li>
 	</ul>
@@ -2484,14 +2487,14 @@ AZURE_TENANT_ID=<span class="hljs-string">"tenant-ID"</span></code></pre>
 }
 
 main()</code></pre>
-			<a href="#using-dotenv-azure" id="using-dotenv-azure" style="color: inherit; text-decoration: none;">
-				<h4>Using dotenv-azure</h4>
+			<a href="#using-dotenv-azure-programmatically" id="using-dotenv-azure-programmatically" style="color: inherit; text-decoration: none;">
+				<h4>Using dotenv-azure programmatically</h4>
 			</a>
-			<p>You should call <code>dotenv-azure</code> rigth after the initialization of your app. Since the method <code>.config()</code> returns a promise, you have to call it inside an async function:</p>
+			<p>You should call <code>dotenv-azure</code> before the initialization of your app. Since the method <code>.config()</code> returns a promise, you have to call it inside an async function:</p>
 			<pre><code class="language-javascript"><span class="hljs-keyword">const</span> DotenvAzure = <span class="hljs-built_in">require</span>(<span class="hljs-string">'dotenv-azure'</span>)
-<span class="hljs-keyword">const</span> dotenvAzure = <span class="hljs-keyword">new</span> DotenvAzure()
 
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> dotenvAzure = <span class="hljs-keyword">new</span> DotenvAzure()
   <span class="hljs-keyword">const</span> { parsed } = <span class="hljs-keyword">await</span> dotenvAzure.config()
 
   <span class="hljs-comment">// `parsed` is an object containing:</span>
@@ -2503,17 +2506,30 @@ main()</code></pre>
 
   <span class="hljs-comment">// process.env now has the keys and values from the parsed result</span>
   <span class="hljs-built_in">console</span>.log(process.env)
+
+  <span class="hljs-comment">// start app</span>
+  <span class="hljs-comment">// ...</span>
 }
 
 main()</code></pre>
-			<a href="#preload" id="preload" style="color: inherit; text-decoration: none;">
-				<h2>Preload</h2>
+			<a href="#preload-dotenv-azure" id="preload-dotenv-azure" style="color: inherit; text-decoration: none;">
+				<h4>Preload dotenv-azure</h4>
 			</a>
-			<p>TODO</p>
+			<p>You can use the <code>--require</code> (<code>-r</code>) <a href="https://nodejs.org/api/cli.html#cli_r_require_module">command line option</a> to preload <code>dotenv-azure</code>. By doing this, you do not need to require and load <code>dotenv-azure</code> in your application code.</p>
+			<pre><code class="language-bash">node -r dotenv-azure/config your_script.js</code></pre>
+			<p>To enable <a href="https://danielfsousa.github.io/dotenv-azure/interfaces/dotenvazureconfigoptions.html#safe">safe mode</a> you should require <code>config-safe</code>:</p>
+			<pre><code class="language-bash">node -r dotenv-azure/config-safe your_script.js</code></pre>
 			<a href="#rules" id="rules" style="color: inherit; text-decoration: none;">
 				<h2>Rules</h2>
 			</a>
-			<p>TODO</p>
+			<p><code>dotenv-azure</code> uses <code>dotenv</code> under the covers, so the same <a href="https://github.com/motdotla/dotenv/blob/master/README.md#rules">rules</a> for <code>.env</code> files apply here as well.</p>
+			<p>When populating <code>process.env</code> <code>dotenv-azure</code> will follow these steps:</p>
+			<ol>
+				<li>Values within the process&#39;s environment (i.e. an environment variable exists) takes precedence over everything else.</li>
+				<li>For values defined in the <code>.env</code> file, and not present in the environemnt, <code>process.env</code> will be populated with those values.</li>
+				<li><code>dotenv-azure</code> will search for the required environment variables to access azure&#39;s services after loading variables from the <code>.env</code> file.</li>
+				<li>For values defined within the process&#39;s environment, in the <code>.env</code> file or in the Azure App Configuration, where the value is prefixed with <code>kv:</code> what follows is assumed to be the secret identifier of a secret stored in Key Vault, and so <code>dotenv-azure</code> will attempt to populate the value from Key Vault.</li>
+			</ol>
 			<a href="#options" id="options" style="color: inherit; text-decoration: none;">
 				<h2>Options</h2>
 			</a>
@@ -2591,6 +2607,7 @@ main()</code></pre>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-function"><a href="globals.html#compact" class="tsd-kind-icon">compact</a></li>
 							<li class="tsd-kind-function"><a href="globals.html#difference" class="tsd-kind-icon">difference</a></li>
+							<li class="tsd-kind-function"><a href="globals.html#populateprocessenv" class="tsd-kind-icon">populate<wbr>Process<wbr>Env</a></li>
 							<li class="tsd-kind-function"><a href="globals.html#testifvalueisvaultsecret" class="tsd-kind-icon">test<wbr>IfValue<wbr>IsVault<wbr>Secret</a></li>
 						</ul>
 					</section>
@@ -2605,7 +2622,7 @@ main()</code></pre>
 				<div class="tsd-signature tsd-kind-icon">Dotenv<wbr>Azure<wbr>Parse<wbr>Output<span class="tsd-signature-symbol">:</span> <a href="globals.html#variablesobject" class="tsd-signature-type">VariablesObject</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/danielfsousa/dotenv-azure/blob/de37411/src/types.ts#L60">types.ts:60</a></li>
+						<li>Defined in <a href="https://github.com/danielfsousa/dotenv-azure/blob/e411d61/src/types.ts#L60">types.ts:60</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -2615,7 +2632,7 @@ main()</code></pre>
 				<div class="tsd-signature tsd-kind-icon">Variables<wbr>Object<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/danielfsousa/dotenv-azure/blob/de37411/src/types.ts#L14">types.ts:14</a></li>
+						<li>Defined in <a href="https://github.com/danielfsousa/dotenv-azure/blob/e411d61/src/types.ts#L14">types.ts:14</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2645,7 +2662,7 @@ main()</code></pre>
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/danielfsousa/dotenv-azure/blob/de37411/src/utils.ts#L11">utils.ts:11</a></li>
+								<li>Defined in <a href="https://github.com/danielfsousa/dotenv-azure/blob/e411d61/src/utils.ts#L11">utils.ts:11</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2668,7 +2685,7 @@ main()</code></pre>
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/danielfsousa/dotenv-azure/blob/de37411/src/utils.ts#L7">utils.ts:7</a></li>
+								<li>Defined in <a href="https://github.com/danielfsousa/dotenv-azure/blob/e411d61/src/utils.ts#L7">utils.ts:7</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2685,6 +2702,37 @@ main()</code></pre>
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-function">
+				<a name="populateprocessenv" class="tsd-anchor"></a>
+				<h3>populate<wbr>Process<wbr>Env</h3>
+				<ul class="tsd-signatures tsd-kind-function">
+					<li class="tsd-signature tsd-kind-icon">populate<wbr>Process<wbr>Env<span class="tsd-signature-symbol">(</span>variables<span class="tsd-signature-symbol">: </span><a href="globals.html#variablesobject" class="tsd-signature-type">VariablesObject</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/danielfsousa/dotenv-azure/blob/e411d61/src/utils.ts#L36">utils.ts:36</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Add variable if does not exist in process.env</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>variables: <a href="globals.html#variablesobject" class="tsd-signature-type">VariablesObject</a></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>an object with keys and values</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function">
 				<a name="testifvalueisvaultsecret" class="tsd-anchor"></a>
 				<h3>test<wbr>IfValue<wbr>IsVault<wbr>Secret</h3>
 				<ul class="tsd-signatures tsd-kind-function">
@@ -2694,7 +2742,7 @@ main()</code></pre>
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/danielfsousa/dotenv-azure/blob/de37411/src/utils.ts#L21">utils.ts:21</a></li>
+								<li>Defined in <a href="https://github.com/danielfsousa/dotenv-azure/blob/e411d61/src/utils.ts#L21">utils.ts:21</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
