@@ -24,11 +24,11 @@
   "author": {
     "name": "Daniel Sousa",
     "email": "sousa.dfs@gmail.com",
-    "url": "https://github.com/danielfsousa"
+    "url": "https://github.com/jazida-opensource"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/danielfsousa/dotenv-azure"
+    "url": "https://github.com/jazida-opensource/dotenv-azure"
   },
   "license": "MIT",
   "engines": {

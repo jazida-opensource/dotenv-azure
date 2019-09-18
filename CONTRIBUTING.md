@@ -7,7 +7,7 @@ These steps will guide you through contributing to this project:
 - Fork the repo
 - Clone it and install dependencies
 
-		git clone https://github.com/danielfsousa/dotenv-azure
+		git clone https://github.com/jazida-opensource/dotenv-azure
 		npm install
 
 - Create an issue to discuss about the changes you want to do before starting to code.
