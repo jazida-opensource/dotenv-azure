@@ -1,9 +1,9 @@
 import * as fs from 'fs'
-import dotenv, { DotenvParseOptions, DotenvParseOutput } from 'dotenv'
+import dotenv, { DotenvParseOptions } from 'dotenv'
 import { ManagedIdentityCredential, ClientSecretCredential } from '@azure/identity'
 import { SecretsClient } from '@azure/keyvault-secrets'
 import { testIfValueIsVaultSecret, compact, difference, populateProcessEnv } from './utils'
-import { MissingEnvVarsError, InvalidKeyVaultUrlError } from './errors'
+import { MissingEnvVarsError, InvalidKeyVaultUrlError, MissingAppConfigCredentialsError } from './errors'
 import {
   DotenvAzureOptions,
   DotenvAzureConfigOptions,
@@ -39,22 +39,19 @@ export default class DotenvAzure {
    */
   async config(options: DotenvAzureConfigOptions = {}): Promise<DotenvAzureConfigOutput> {
     const { safe = false } = options
-    const { error, parsed } = dotenv.config(options)
-    if (error || !parsed) {
-      throw error
-    }
+    const dotenvResult = dotenv.config(options)
 
-    const azureVars = await this.loadFromAzure(parsed)
-    const joinedVars = { ...azureVars, ...parsed }
+    const azureVars = await this.loadFromAzure(dotenvResult.parsed)
+    const joinedVars = { ...azureVars, ...dotenvResult.parsed }
 
     populateProcessEnv(azureVars)
     if (safe) {
-      this.validateFromEnvExample(options, error)
+      this.validateFromEnvExample(options, dotenvResult.error)
     }
 
     return {
       parsed: joinedVars,
-      dotenv: parsed,
+      dotenv: dotenvResult,
       azure: azureVars
     }
   }
@@ -67,7 +64,7 @@ export default class DotenvAzure {
    * @param options - additional options
    * @returns an object with keys and values
    */
-  async parse(src: string, options: DotenvParseOptions): Promise<DotenvAzureParseOutput> {
+  async parse(src: string, options?: DotenvParseOptions): Promise<DotenvAzureParseOutput> {
     const dotenvVars = dotenv.parse(src, options)
     const azureVars = await this.loadFromAzure(dotenvVars)
     return { ...azureVars, ...dotenvVars }
@@ -76,11 +73,11 @@ export default class DotenvAzure {
   /**
    * Loads your Azure App Configuration and Key Vault variables.
    * It does not change {@link https://nodejs.org/api/process.html#process_process_env | `process.env`}.
-   * @param dotenvVars - an object to merge with
+   * @param vars - an optional object with azure creadentials variables
    * @returns an object with keys and values
    */
-  async loadFromAzure(dotenvVars: DotenvParseOutput): Promise<VariablesObject> {
-    const credentials = this.getAuthVariables(dotenvVars)
+  async loadFromAzure(vars?: VariablesObject): Promise<VariablesObject> {
+    const credentials = this.getAuthVariables(vars)
     const appConfigClient = this.getAppConfigClient(credentials)
     const appConfigVars = await this.getVariablesFromAppConfig(appConfigClient)
     const keyVaultSecrets = await this.getSecretsFromKeyVault(credentials, appConfigVars)
@@ -168,13 +165,10 @@ export default class DotenvAzure {
     return this.keyVaultClients[vaultURL]
   }
 
-  private getAuthVariables(dotenvVars: DotenvParseOutput): AzureCredentials {
-    const vars = dotenvVars || process.env
+  private getAuthVariables(dotenvVars: VariablesObject = {}): AzureCredentials {
+    const vars = { ...dotenvVars, ...process.env }
     if (!vars.AZURE_APP_CONFIG_URL && !vars.AZURE_APP_CONFIG_CONNECTION_STRING && !this.appConfigUrl) {
-      throw new Error(
-        'At least one of the variables AZURE_APP_CONFIG_URL or AZURE_APP_CONFIG_CONNECTION_STRING is required. \
-        You can also pass the option `appConfigUrl` to the DotenvAzure constructor'
-      )
+      throw new MissingAppConfigCredentialsError()
     }
 
     return {
