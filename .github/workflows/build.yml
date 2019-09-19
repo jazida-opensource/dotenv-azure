@@ -2,11 +2,13 @@ name: build
 
 on:
   pull_request:
-  push:
     branches:
       - 'alpha'
       - 'beta'
       - 'master'
+  push:
+    branches:
+      - '*'
 jobs:
   build:
     runs-on: ubuntu-latest
