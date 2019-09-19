@@ -1,7 +1,7 @@
 # dotenv-azure
 
 ![Build status](https://github.com/jazida-opensource/dotenv-azure/workflows/CI/badge.svg)
-[![codecov](https://codecov.io/gh/jazida-opensource/dotenv-azure/branch/master/graph/badge.svg)](https://codecov.io/gh/jazida-opensource/dotenv-azure)
+[![codecov](https://codecov.io/gh/jazida-opensource/dotenv-azure/branch/alpha/graph/badge.svg)](https://codecov.io/gh/jazida-opensource/dotenv-azure)
 [![NPM version](https://img.shields.io/npm/v/dotenv-azure.svg)](https://www.npmjs.com/package/dotenv-azure)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 [![LICENSE](https://img.shields.io/github/license/jazida-opensource/dotenv-azure.svg)](LICENSE)
