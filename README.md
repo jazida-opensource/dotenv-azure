@@ -172,10 +172,10 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 <!-- prettier-ignore -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/danielfsousa"><img src="https://avatars0.githubusercontent.com/u/11372312?v=4" width="100px;" alt="Daniel Sousa"/><br /><sub><b>Daniel Sousa</b></sub></a><br /><a href="https://github.com/jazida-opensource/dotenv-azure/commits?author=danielfsousa" title="Code">💻</a> <a href="https://github.com/jazida-opensource/dotenv-azure/commits?author=danielfsousa" title="Documentation">📖</a> <a href="#infra-jazida-opensource" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-jazida-opensource" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/danielfsousa"><img src="https://avatars0.githubusercontent.com/u/11372312?v=4" width="100px;" alt="Daniel Sousa"/><br /><sub><b>Daniel Sousa</b></sub></a><br /><a href="https://github.com/jazida-opensource/dotenv-azure/commits?author=danielfsousa" title="Code">💻</a> <a href="https://github.com/jazida-opensource/dotenv-azure/commits?author=danielfsousa" title="Documentation">📖</a> <a href="#infra-danielfsousa" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-danielfsousa" title="Maintenance">🚧</a> <a href="https://github.com/jazida-opensource/dotenv-azure/commits?author=danielfsousa" title="Tests">⚠️</a></td>
   </tr>
 </table>
-<!-- prettier-ignore -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 
