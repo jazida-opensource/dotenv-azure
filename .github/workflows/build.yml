@@ -1,4 +1,4 @@
-name: build_ci
+name: build
 
 on:
   push:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10, 12]
+        node-version: [8, 10, 12]
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js
@@ -18,7 +18,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install
-        run: yarn --frozen-lockfile
+        run: yarn --frozen-lockfile --ignore-engines
         env:
           CI: true
 
@@ -45,7 +45,7 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Deploy docs
-        if: startsWith(matrix.node-version, '10') && github.event_name == 'push' && github.ref == 'refs/heads/master'
+        if: success() && startsWith(matrix.node-version, '10') && github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: peaceiris/actions-gh-pages@v2.3.0
         env:
           ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -53,7 +53,7 @@ jobs:
           PUBLISH_DIR: ./docs
 
       - name: Create release
-        if: startsWith(matrix.node-version, '10') && github.event_name == 'push'
+        if: success() && startsWith(matrix.node-version, '10') && github.event_name == 'push'
         run: yarn semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
