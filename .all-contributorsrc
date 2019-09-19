@@ -14,13 +14,14 @@
         "code",
         "doc",
         "infra",
-        "maintenance"
+        "maintenance",
+        "test"
       ]
     }
   ],
   "contributorsPerLine": 7,
   "projectName": "dotenv-azure",
-  "projectOwner": "danielfsousa",
+  "projectOwner": "jazida-opensource",
   "repoType": "github",
   "repoHost": "https://github.com"
 }
