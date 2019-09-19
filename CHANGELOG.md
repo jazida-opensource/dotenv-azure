@@ -9,9 +9,6 @@ All notable changes to this project will be documented in this file. See
 ### Bug Fixes
 
 * bug fixes ([31a2669](https://github.com/jazida-opensource/dotenv-azure/commit/31a2669))
-* semantic-release version ([5d355b2](https://github.com/jazida-opensource/dotenv-azure/commit/5d355b2))
-* update semantic-release dependencies ([7e1c970](https://github.com/jazida-opensource/dotenv-azure/commit/7e1c970))
-* version ([9e54cfd](https://github.com/jazida-opensource/dotenv-azure/commit/9e54cfd))
 
 # [1.0.0-alpha.3](https://github.com/jazida-opensource/dotenv-azure/compare/v1.0.0-alpha.2@alpha...v1.0.0-alpha.3@alpha) (2019-09-16)
 
