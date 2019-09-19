@@ -1,6 +1,6 @@
 {
   "name": "dotenv-azure",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.3",
   "description": "Load environment variables from Azure's services App Configuration, Key Vault or a .env file",
   "keywords": [
     "dotenv",
@@ -28,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/danielfsousa/dotenv-azure"
+    "url": "https://github.com/jazida-opensource/dotenv-azure"
   },
   "license": "MIT",
   "engines": {

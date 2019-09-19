@@ -1,10 +1,10 @@
 # dotenv-azure
 
-![Build status](https://github.com/danielfsousa/dotenv-azure/workflows/CI/badge.svg)
-[![codecov](https://codecov.io/gh/danielfsousa/dotenv-azure/branch/master/graph/badge.svg)](https://codecov.io/gh/danielfsousa/dotenv-azure)
+![Build status](https://github.com/jazida-opensource/dotenv-azure/workflows/CI/badge.svg)
+[![codecov](https://codecov.io/gh/jazida-opensource/dotenv-azure/branch/master/graph/badge.svg)](https://codecov.io/gh/jazida-opensource/dotenv-azure)
 [![NPM version](https://img.shields.io/npm/v/dotenv-azure.svg)](https://www.npmjs.com/package/dotenv-azure)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
-[![LICENSE](https://img.shields.io/github/license/danielfsousa/dotenv-azure.svg)](LICENSE)
+[![LICENSE](https://img.shields.io/github/license/jazida-opensource/dotenv-azure.svg)](LICENSE)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
@@ -116,7 +116,7 @@ You can use the `--require` (`-r`) [command line option](https://nodejs.org/api/
 node -r dotenv-azure/config your_script.js
 ```
 
-To enable [safe mode](https://danielfsousa.github.io/dotenv-azure/interfaces/dotenvazureconfigoptions.html#safe) you should require `config-safe`:
+To enable [safe mode](https://jazida-opensource.github.io/dotenv-azure/interfaces/dotenvazureconfigoptions.html#safe) you should require `config-safe`:
 
 ```bash
 node -r dotenv-azure/config-safe your_script.js
@@ -156,7 +156,7 @@ main()
 
 ## Documentation
 
-You can read the api documentation [here](https://danielfsousa.github.io/dotenv-azure).
+You can read the api documentation [here](https://jazida-opensource.github.io/dotenv-azure).
 
 ## Inspirations
 
@@ -172,7 +172,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 <!-- prettier-ignore -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/danielfsousa"><img src="https://avatars0.githubusercontent.com/u/11372312?v=4" width="100px;" alt="Daniel Sousa"/><br /><sub><b>Daniel Sousa</b></sub></a><br /><a href="https://github.com/danielfsousa/dotenv-azure/commits?author=danielfsousa" title="Code">💻</a> <a href="https://github.com/danielfsousa/dotenv-azure/commits?author=danielfsousa" title="Documentation">📖</a> <a href="#infra-danielfsousa" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-danielfsousa" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/danielfsousa"><img src="https://avatars0.githubusercontent.com/u/11372312?v=4" width="100px;" alt="Daniel Sousa"/><br /><sub><b>Daniel Sousa</b></sub></a><br /><a href="https://github.com/jazida-opensource/dotenv-azure/commits?author=danielfsousa" title="Code">💻</a> <a href="https://github.com/jazida-opensource/dotenv-azure/commits?author=danielfsousa" title="Documentation">📖</a> <a href="#infra-jazida-opensource" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-jazida-opensource" title="Maintenance">🚧</a></td>
   </tr>
 </table>
 <!-- prettier-ignore -->
