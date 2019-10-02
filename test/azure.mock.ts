@@ -24,7 +24,7 @@ export const appConfigListMock = jest.fn(() =>
   ])
 )
 
-export const AppConfigurationClientMock = jest.mock('../src/app-config', () => ({
+export const AppConfigurationClientMock = jest.mock('@azure/app-configuration', () => ({
   AppConfigurationClient: class AppConfigurationClient {
     listConfigurationSettings: any
     constructor() {
