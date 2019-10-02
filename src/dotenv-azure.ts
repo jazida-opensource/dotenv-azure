@@ -2,6 +2,7 @@ import * as fs from 'fs'
 import dotenv, { DotenvParseOptions } from 'dotenv'
 import { ManagedIdentityCredential, ClientSecretCredential } from '@azure/identity'
 import { SecretsClient } from '@azure/keyvault-secrets'
+import { AppConfigurationClient, ModelConfigurationSetting } from '@azure/app-configuration'
 import { testIfValueIsVaultSecret, compact, difference, populateProcessEnv } from './utils'
 import { MissingEnvVarsError, InvalidKeyVaultUrlError, MissingAppConfigCredentialsError } from './errors'
 import {
@@ -12,10 +13,6 @@ import {
   VariablesObject,
   AzureCredentials
 } from './types'
-
-// @azure/app-config is not published at npm yet
-import { AppConfigurationClient } from './app-config'
-import { ConfigurationSetting } from './app-config/generated/models'
 
 export default class DotenvAzure {
   private readonly appConfigUrl?: string
@@ -103,7 +100,7 @@ export default class DotenvAzure {
       vars = body.items
         .filter(item => item.key)
         .reduce(
-          (acc, item: ConfigurationSetting) => ({
+          (acc, item: ModelConfigurationSetting) => ({
             ...acc,
             [item.key || Symbol('key')]: item.value || ''
           }),
