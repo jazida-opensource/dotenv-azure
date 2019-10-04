@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.2](https://github.com/jazida-opensource/dotenv-azure/compare/v1.0.0-beta.1@beta...v1.0.0-beta.2@beta) (2019-10-04)
+
+
+### Bug Fixes
+
+* limit concurrency to avoid Azure AD rate limiting ([#29](https://github.com/jazida-opensource/dotenv-azure/issues/29)) ([c5b2aeb](https://github.com/jazida-opensource/dotenv-azure/commit/c5b2aeb))
+
 # 1.0.0-beta.1 (2019-10-02)
 
 
