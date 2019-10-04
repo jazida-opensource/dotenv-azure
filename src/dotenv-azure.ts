@@ -1,4 +1,5 @@
 import * as fs from 'fs'
+import pLimit from 'p-limit'
 import dotenv, { DotenvParseOptions } from 'dotenv'
 import { ManagedIdentityCredential, ClientSecretCredential } from '@azure/identity'
 import { SecretsClient } from '@azure/keyvault-secrets'
@@ -107,7 +108,7 @@ export default class DotenvAzure {
           {} as VariablesObject
         )
     }
-
+    console.log('appconfig', vars)
     return vars
   }
 
@@ -116,22 +117,25 @@ export default class DotenvAzure {
     vars: VariablesObject
   ): Promise<VariablesObject> {
     const secrets: VariablesObject = {}
+    // limit requests to avoid Azure AD rate limiting
+    const limit = pLimit(2)
 
-    await Promise.all(
-      Object.entries(vars).map(async ([key, value]) => {
-        const keyVaultUrl = testIfValueIsVaultSecret(value)
-        if (!keyVaultUrl) return
+    const getSecret = async (key: string, value: string): Promise<void> => {
+      const keyVaultUrl = testIfValueIsVaultSecret(value)
+      if (!keyVaultUrl) return
 
-        const [, , secretName, secretVersion] = keyVaultUrl.pathname.split('/')
-        if (!secretName || !secretVersion) {
-          throw new InvalidKeyVaultUrlError(key.replace('kv:', ''))
-        }
+      const [, , secretName, secretVersion] = keyVaultUrl.pathname.split('/')
+      if (!secretName || !secretVersion) {
+        throw new InvalidKeyVaultUrlError(key.replace('kv:', ''))
+      }
 
-        const keyVaultClient = this.getKeyVaultClient(credentials, keyVaultUrl.origin)
-        const response = await keyVaultClient.getSecret(secretName, { version: secretVersion })
-        secrets[key] = response.value || ''
-      })
-    )
+      const keyVaultClient = this.getKeyVaultClient(credentials, keyVaultUrl.origin)
+      const response = await keyVaultClient.getSecret(secretName, { version: secretVersion })
+      secrets[key] = response.value || ''
+      console.log('kv', secretName, response.value)
+    }
+
+    await Promise.all(Object.entries(vars).map(([key, val]) => limit(() => getSecret(key, val))))
 
     return secrets
   }
