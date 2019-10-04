@@ -118,7 +118,7 @@ export default class DotenvAzure {
   ): Promise<VariablesObject> {
     const secrets: VariablesObject = {}
     // limit requests to avoid Azure AD rate limiting
-    const limit = pLimit(15)
+    const limit = pLimit(2)
 
     const getSecret = async (key: string, value: string): Promise<void> => {
       const keyVaultUrl = testIfValueIsVaultSecret(value)
