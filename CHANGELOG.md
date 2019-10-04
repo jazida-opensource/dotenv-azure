@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.3](https://github.com/jazida-opensource/dotenv-azure/compare/v1.0.0-beta.2@beta...v1.0.0-beta.3@beta) (2019-10-04)
+
+
+### Bug Fixes
+
+* remove console.log ([5efa352](https://github.com/jazida-opensource/dotenv-azure/commit/5efa352))
+
 # [1.0.0-beta.2](https://github.com/jazida-opensource/dotenv-azure/compare/v1.0.0-beta.1@beta...v1.0.0-beta.2@beta) (2019-10-04)
 
 
