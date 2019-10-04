@@ -39,7 +39,7 @@ jobs:
           CI: true
 
       - name: Report coverage
-        if: startsWith(matrix.node-version, '10') && github.event_name == 'push' && github.ref == 'refs/heads/master'
+        if: startsWith(matrix.node-version, '10') && github.event_name == 'push'
         run: yarn codecov
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
