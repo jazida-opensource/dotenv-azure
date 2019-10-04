@@ -108,7 +108,7 @@ export default class DotenvAzure {
           {} as VariablesObject
         )
     }
-    console.log('appconfig', vars)
+
     return vars
   }
 
@@ -132,7 +132,6 @@ export default class DotenvAzure {
       const keyVaultClient = this.getKeyVaultClient(credentials, keyVaultUrl.origin)
       const response = await keyVaultClient.getSecret(secretName, { version: secretVersion })
       secrets[key] = response.value || ''
-      console.log('kv', secretName, response.value)
     }
 
     await Promise.all(Object.entries(vars).map(([key, val]) => limit(() => getSecret(key, val))))
