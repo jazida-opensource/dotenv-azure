@@ -17,6 +17,14 @@
     "@azure/core-http" "1.0.0-preview.3"
     tslib "^1.9.3"
 
+"@azure/core-arm@1.0.0-preview.4":
+  version "1.0.0-preview.4"
+  resolved "https://registry.yarnpkg.com/@azure/core-arm/-/core-arm-1.0.0-preview.4.tgz#a165bd74d25e66d1726e415028363fb8914a0b03"
+  integrity sha512-A/BrvRvG0lzV8595/SrgJvYFz1hj/pe/ZkH5g82Yggcxkw1wgM7YFXtlV+eyPqPWDJ7AeQslgRpHqQ3gd3nmfw==
+  dependencies:
+    "@azure/core-http" "1.0.0-preview.4"
+    tslib "^1.9.3"
+
 "@azure/core-asynciterator-polyfill@1.0.0-preview.1":
   version "1.0.0-preview.1"
   resolved "https://registry.yarnpkg.com/@azure/core-asynciterator-polyfill/-/core-asynciterator-polyfill-1.0.0-preview.1.tgz#ad7c726cfd73c946dbfbc3e485338ccf678fc75a"
@@ -49,6 +57,25 @@
     uuid "^3.3.2"
     xml2js "^0.4.19"
 
+"@azure/core-http@1.0.0-preview.4":
+  version "1.0.0-preview.4"
+  resolved "https://registry.yarnpkg.com/@azure/core-http/-/core-http-1.0.0-preview.4.tgz#9ad17dba9cea5a4925d0f9744bd277a7d54ad668"
+  integrity sha512-33yIGopaXQNSZe3WbqKdVxZLH09fOXuvQBTAmOf7t3x0QsqkYAkKz8xAleFVAHIwbCnayKONmgHShrMibePDSQ==
+  dependencies:
+    "@azure/abort-controller" "1.0.0-preview.2"
+    "@azure/core-auth" "1.0.0-preview.3"
+    "@azure/core-tracing" "1.0.0-preview.3"
+    "@types/node-fetch" "^2.5.0"
+    "@types/tunnel" "^0.0.1"
+    form-data "^2.5.0"
+    node-fetch "^2.6.0"
+    process "^0.11.10"
+    tough-cookie "^3.0.1"
+    tslib "^1.9.3"
+    tunnel "^0.0.6"
+    uuid "^3.3.2"
+    xml2js "^0.4.19"
+
 "@azure/core-paging@1.0.0-preview.2":
   version "1.0.0-preview.2"
   resolved "https://registry.yarnpkg.com/@azure/core-paging/-/core-paging-1.0.0-preview.2.tgz#a555bd6df3fdae9fb35ab704f157ef73a1e17b10"
@@ -61,6 +88,15 @@
   resolved "https://registry.yarnpkg.com/@azure/core-tracing/-/core-tracing-1.0.0-preview.2.tgz#4f589dcac7841c8bcb65995d9592105e3d3f8ad2"
   integrity sha512-ID/kDVax0uYlw1HVBNsLv6JuE8NbgLUrKrmvVqyuvtbNk+Gk+IKbpUbrDMAoauDAd1CHifs+fkg210LD2JWSEQ==
   dependencies:
+    tslib "^1.9.3"
+
+"@azure/core-tracing@1.0.0-preview.3":
+  version "1.0.0-preview.3"
+  resolved "https://registry.yarnpkg.com/@azure/core-tracing/-/core-tracing-1.0.0-preview.3.tgz#b40e1e3e9f1ff4e805d94fce5b3e44eff1b6851b"
+  integrity sha512-Nu4iA7M71WXiau1axE3VHeiNqnsl7Ysdg7Qu/rOmo1ew+Tjv0vIH+/TgGbMhw/Sz+c0bZxHaYdMW2UaTgDcJpA==
+  dependencies:
+    "@opencensus/web-types" "0.0.7"
+    debug "^4.1.1"
     tslib "^1.9.3"
 
 "@azure/identity@1.0.0-preview.3", "@azure/identity@^1.0.0-preview.3":
@@ -596,6 +632,11 @@
     octokit-pagination-methods "^1.1.0"
     once "^1.4.0"
     universal-user-agent "^4.0.0"
+
+"@opencensus/web-types@0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@opencensus/web-types/-/web-types-0.0.7.tgz#4426de1fe5aa8f624db395d2152b902874f0570a"
+  integrity sha512-xB+w7ZDAu3YBzqH44rCmG9/RlrOmFuDPt/bpf17eJr8eZSrLt7nc7LnWdxM9Mmoj/YKMHpxRg28txu3TcpiL+g==
 
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
