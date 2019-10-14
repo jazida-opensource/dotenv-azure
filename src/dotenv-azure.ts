@@ -25,7 +25,7 @@ export default class DotenvAzure {
   /**
    * Initializes a new instance of the DotenvAzure class.
    */
-  constructor({ appConfigUrl, rateLimit = 48 }: DotenvAzureOptions = {}) {
+  constructor({ appConfigUrl, rateLimit = 45 }: DotenvAzureOptions = {}) {
     this.keyVaultClients = {}
     this.appConfigUrl = appConfigUrl
     this.rateLimitMinTime = Math.ceil(1000 / rateLimit)

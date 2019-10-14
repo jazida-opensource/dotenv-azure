@@ -21,7 +21,7 @@ export interface DotenvAzureOptions {
    */
   appConfigUrl?: string
   /**
-   * Number of requests per second to avoid Azure AD rate limiter. Default: 48
+   * Number of requests per second to avoid Azure AD rate limiter. Default: 45
    */
   rateLimit?: number
 }
