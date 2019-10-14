@@ -16,6 +16,7 @@ import {
 } from './types'
 
 export default class DotenvAzure {
+  private readonly rateLimitMinTime: number
   private readonly appConfigUrl?: string
   private readonly keyVaultClients: {
     [vaultURL: string]: SecretsClient
@@ -24,9 +25,10 @@ export default class DotenvAzure {
   /**
    * Initializes a new instance of the DotenvAzure class.
    */
-  constructor({ appConfigUrl }: DotenvAzureOptions = {}) {
+  constructor({ appConfigUrl, rateLimit = 48 }: DotenvAzureOptions = {}) {
     this.keyVaultClients = {}
     this.appConfigUrl = appConfigUrl
+    this.rateLimitMinTime = Math.ceil(1000 / rateLimit)
   }
 
   /**
@@ -118,7 +120,7 @@ export default class DotenvAzure {
   ): Promise<VariablesObject> {
     const secrets: VariablesObject = {}
     // limit requests to avoid Azure AD rate limiting
-    const limiter = new Bottleneck({ minTime: 25 })
+    const limiter = new Bottleneck({ minTime: this.rateLimitMinTime })
 
     const getSecret = async (key: string, value: string): Promise<void> => {
       const keyVaultUrl = testIfValueIsVaultSecret(value)
