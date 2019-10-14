@@ -107,7 +107,7 @@
     "@opencensus/web-types" "0.0.7"
     tslib "^1.9.3"
 
-"@azure/identity@1.0.0-preview.5", "@azure/identity@^1.0.0-preview.5":
+"@azure/identity@1.0.0-preview.5":
   version "1.0.0-preview.5"
   resolved "https://registry.yarnpkg.com/@azure/identity/-/identity-1.0.0-preview.5.tgz#9c4918dd2096151797dd879c5a9206fb114717df"
   integrity sha512-ScJYcSWxnM/ScfcWI7p/awCOhMz98HbQZN2WrxnzpQ76lVD8d2luJq0AV/YUJvoroCgi9LTRdv4W2sMVNDUtNA==
@@ -121,7 +121,7 @@
     tslib "^1.9.3"
     uuid "^3.3.2"
 
-"@azure/keyvault-secrets@^4.0.0-preview.8":
+"@azure/keyvault-secrets@4.0.0-preview.8":
   version "4.0.0-preview.8"
   resolved "https://registry.yarnpkg.com/@azure/keyvault-secrets/-/keyvault-secrets-4.0.0-preview.8.tgz#c43295b9a5cc6a896d385b519c19c1b0c5426176"
   integrity sha512-nB/lkHU1PCmRV2WUPdTecVZTSrrNzgJTbVtg+6AAnfEzlRvlg4w+DpjDzqKlPN2KrVdVXHEA4x/r7zjMfAdMaw==
