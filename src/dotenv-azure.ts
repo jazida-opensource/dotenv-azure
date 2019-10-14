@@ -1,5 +1,5 @@
 import * as fs from 'fs'
-import pLimit from 'p-limit'
+import Bottleneck from 'bottleneck'
 import dotenv, { DotenvParseOptions } from 'dotenv'
 import { ManagedIdentityCredential, ClientSecretCredential } from '@azure/identity'
 import { SecretsClient } from '@azure/keyvault-secrets'
@@ -118,7 +118,7 @@ export default class DotenvAzure {
   ): Promise<VariablesObject> {
     const secrets: VariablesObject = {}
     // limit requests to avoid Azure AD rate limiting
-    const limit = pLimit(2)
+    const limiter = new Bottleneck({ minTime: 25 })
 
     const getSecret = async (key: string, value: string): Promise<void> => {
       const keyVaultUrl = testIfValueIsVaultSecret(value)
@@ -134,7 +134,7 @@ export default class DotenvAzure {
       secrets[key] = response.value || ''
     }
 
-    await Promise.all(Object.entries(vars).map(([key, val]) => limit(() => getSecret(key, val))))
+    await Promise.all(Object.entries(vars).map(([key, val]) => limiter.schedule(() => getSecret(key, val))))
 
     return secrets
   }
