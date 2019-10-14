@@ -20,6 +20,10 @@ export interface DotenvAzureOptions {
    * You can pass the url of the App Configuration intstead of the environment variable AZURE_APP_CONFIG_URL
    */
   appConfigUrl?: string
+  /**
+   * Number of requests per second to avoid Azure AD rate limiter. Default: 45
+   */
+  rateLimit?: number
 }
 
 export interface DotenvAzureConfigOptions extends DotenvConfigOptions {
