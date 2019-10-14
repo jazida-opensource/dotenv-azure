@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.4](https://github.com/jazida-opensource/dotenv-azure/compare/v1.0.0-beta.3@beta...v1.0.0-beta.4@beta) (2019-10-14)
+
+
+### Bug Fixes
+
+* rate limit requsts by second ([#45](https://github.com/jazida-opensource/dotenv-azure/issues/45)) ([5cb9de3](https://github.com/jazida-opensource/dotenv-azure/commit/5cb9de3))
+
 # [1.0.0-beta.3](https://github.com/jazida-opensource/dotenv-azure/compare/v1.0.0-beta.2@beta...v1.0.0-beta.3@beta) (2019-10-04)
 
 
