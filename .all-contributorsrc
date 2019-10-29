@@ -14,13 +14,23 @@
         "code",
         "doc",
         "infra",
-        "maintenance"
+        "maintenance",
+        "test"
+      ]
+    },
+    {
+      "login": "MaheshSasidharan",
+      "name": "Mahesh Sasidharan",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/9265496?v=4",
+      "profile": "http://maheshsasidharan.github.io",
+      "contributions": [
+        "doc"
       ]
     }
   ],
   "contributorsPerLine": 7,
   "projectName": "dotenv-azure",
-  "projectOwner": "danielfsousa",
+  "projectOwner": "jazida-opensource",
   "repoType": "github",
   "repoHost": "https://github.com"
 }

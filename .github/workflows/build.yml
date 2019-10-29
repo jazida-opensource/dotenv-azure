@@ -1,6 +1,11 @@
 name: build
 
 on:
+  pull_request:
+    branches:
+      - 'alpha'
+      - 'beta'
+      - 'master'
   push:
     branches:
       - '*'
@@ -9,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10, 12]
+        node-version: [8, 10, 12]
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js

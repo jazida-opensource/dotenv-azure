@@ -71,7 +71,7 @@ DATABASE_URL=kv:https://your.vault.azure.net/secrets/DatabaseUrl/7091540ce97143d
 After calling `.config()` method, the value of your key vault scret will be set to process.env:
 
 ```javascript
-const DotenvAzure = require('dotenv-azure')
+const { DotenvAzure } = require('dotenv-azure')
 
 async function main () {
   await new DotenvAzure().config()
@@ -85,7 +85,7 @@ main()
 
 You should call `dotenv-azure` before the initialization of your app. Since the method `.config()` returns a promise, you have to call it inside an async function:
 ```javascript
-const DotenvAzure = require('dotenv-azure')
+const { DotenvAzure } = require('dotenv-azure')
 
 async function main () {
   const dotenvAzure = new DotenvAzure()
@@ -138,7 +138,7 @@ When populating `process.env` `dotenv-azure` will follow these steps:
 You can pass a `safe` option to validate your variables from a `.env.example` file like [dotenv-safe](https://github.com/rolodato/dotenv-safe):
 
 ```javascript
-const DotenvAzure = require('dotenv-azure')
+const { DotenvAzure } = require('dotenv-azure')
 const dotenvAzure = new DotenvAzure()
 
 async function main () {
@@ -172,10 +172,11 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 <!-- prettier-ignore -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/danielfsousa"><img src="https://avatars0.githubusercontent.com/u/11372312?v=4" width="100px;" alt="Daniel Sousa"/><br /><sub><b>Daniel Sousa</b></sub></a><br /><a href="https://github.com/jazida-opensource/dotenv-azure/commits?author=danielfsousa" title="Code">💻</a> <a href="https://github.com/jazida-opensource/dotenv-azure/commits?author=danielfsousa" title="Documentation">📖</a> <a href="#infra-jazida-opensource" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-jazida-opensource" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/danielfsousa"><img src="https://avatars0.githubusercontent.com/u/11372312?v=4" width="100px;" alt="Daniel Sousa"/><br /><sub><b>Daniel Sousa</b></sub></a><br /><a href="https://github.com/jazida-opensource/dotenv-azure/commits?author=danielfsousa" title="Code">💻</a> <a href="https://github.com/jazida-opensource/dotenv-azure/commits?author=danielfsousa" title="Documentation">📖</a> <a href="#infra-danielfsousa" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-danielfsousa" title="Maintenance">🚧</a> <a href="https://github.com/jazida-opensource/dotenv-azure/commits?author=danielfsousa" title="Tests">⚠️</a></td>
+    <td align="center"><a href="http://maheshsasidharan.github.io"><img src="https://avatars2.githubusercontent.com/u/9265496?v=4" width="100px;" alt="Mahesh Sasidharan"/><br /><sub><b>Mahesh Sasidharan</b></sub></a><br /><a href="https://github.com/jazida-opensource/dotenv-azure/commits?author=MaheshSasidharan" title="Documentation">📖</a></td>
   </tr>
 </table>
-<!-- prettier-ignore -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 
