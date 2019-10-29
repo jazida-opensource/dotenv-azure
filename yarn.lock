@@ -38,6 +38,15 @@
     "@azure/abort-controller" "1.0.0-preview.2"
     tslib "^1.9.3"
 
+"@azure/core-auth@1.0.0-preview.4":
+  version "1.0.0-preview.4"
+  resolved "https://registry.yarnpkg.com/@azure/core-auth/-/core-auth-1.0.0-preview.4.tgz#8a25bfdde772a338f9e0344668ea50bdfb213cec"
+  integrity sha512-RQUIQ8En0n3u8a7sLzcgkJlGp/NDEX7q4Mj2DNTe9GdMIPmKKckwzACjlQ1FdDSOkxxMS3HmTZE+Js+8CyRj1w==
+  dependencies:
+    "@azure/abort-controller" "1.0.0-preview.2"
+    "@azure/core-tracing" "1.0.0-preview.5"
+    tslib "^1.9.3"
+
 "@azure/core-http@1.0.0-preview.3":
   version "1.0.0-preview.3"
   resolved "https://registry.yarnpkg.com/@azure/core-http/-/core-http-1.0.0-preview.3.tgz#890e4dedc7a33398175bbabc3488d779b301ae6e"
@@ -76,6 +85,26 @@
     uuid "^3.3.2"
     xml2js "^0.4.19"
 
+"@azure/core-http@1.0.0-preview.6":
+  version "1.0.0-preview.6"
+  resolved "https://registry.yarnpkg.com/@azure/core-http/-/core-http-1.0.0-preview.6.tgz#ce77f7fd1f07b079c1101ae861e5ecf7ce332c2c"
+  integrity sha512-DoSAphAlzIFRZXvVxNtZYAWPpcT85GmYCKheDgF12cr/EDIlfH6g9+el6b+Knm8Cx4HSNlEbja8dWK1786jFKQ==
+  dependencies:
+    "@azure/abort-controller" "1.0.0-preview.2"
+    "@azure/core-auth" "1.0.0-preview.4"
+    "@azure/core-tracing" "1.0.0-preview.5"
+    "@azure/logger" "1.0.0-preview.1"
+    "@types/node-fetch" "^2.5.0"
+    "@types/tunnel" "^0.0.1"
+    form-data "^2.5.0"
+    node-fetch "^2.6.0"
+    process "^0.11.10"
+    tough-cookie "^3.0.1"
+    tslib "^1.9.3"
+    tunnel "^0.0.6"
+    uuid "^3.3.2"
+    xml2js "^0.4.19"
+
 "@azure/core-paging@1.0.0-preview.2":
   version "1.0.0-preview.2"
   resolved "https://registry.yarnpkg.com/@azure/core-paging/-/core-paging-1.0.0-preview.2.tgz#a555bd6df3fdae9fb35ab704f157ef73a1e17b10"
@@ -98,13 +127,36 @@
     "@opencensus/web-types" "0.0.7"
     tslib "^1.9.3"
 
-"@azure/identity@1.0.0-preview.5", "@azure/identity@^1.0.0-preview.3":
+"@azure/core-tracing@1.0.0-preview.5":
+  version "1.0.0-preview.5"
+  resolved "https://registry.yarnpkg.com/@azure/core-tracing/-/core-tracing-1.0.0-preview.5.tgz#656892565a9d1920be2008c9609429e37e13443c"
+  integrity sha512-i3hF4EQucZmn2l4zXscwG5bilnboKHtnLMFVuzXk55dt487/9EJ5uMOP3eyTFpULGjn6xubgYFAJVpUJGVQv4w==
+  dependencies:
+    "@opencensus/web-types" "0.0.7"
+    tslib "^1.9.3"
+
+"@azure/identity@1.0.0-preview.5":
   version "1.0.0-preview.5"
   resolved "https://registry.yarnpkg.com/@azure/identity/-/identity-1.0.0-preview.5.tgz#9c4918dd2096151797dd879c5a9206fb114717df"
   integrity sha512-ScJYcSWxnM/ScfcWI7p/awCOhMz98HbQZN2WrxnzpQ76lVD8d2luJq0AV/YUJvoroCgi9LTRdv4W2sMVNDUtNA==
   dependencies:
     "@azure/core-http" "1.0.0-preview.5"
     "@azure/core-tracing" "1.0.0-preview.4"
+    events "^3.0.0"
+    jws "^3.2.2"
+    msal "^1.0.2"
+    qs "^6.7.0"
+    tslib "^1.9.3"
+    uuid "^3.3.2"
+
+"@azure/identity@^1.0.0-preview.3":
+  version "1.0.0-preview.6"
+  resolved "https://registry.yarnpkg.com/@azure/identity/-/identity-1.0.0-preview.6.tgz#d97fb3c129eee307ac8cc0927bdf9f4ca23b2c34"
+  integrity sha512-5Wnh1yv6rn7ytgzZE/otIM7Om4J90hR6UzRoi04iaBHAq0sU/jOBDgTKtfNbiti6XkGpxlKLc6L0UzChVfpnXg==
+  dependencies:
+    "@azure/core-http" "1.0.0-preview.6"
+    "@azure/core-tracing" "1.0.0-preview.5"
+    "@azure/logger" "1.0.0-preview.1"
     events "^3.0.0"
     jws "^3.2.2"
     msal "^1.0.2"
@@ -123,6 +175,13 @@
     "@azure/core-paging" "1.0.0-preview.2"
     "@azure/core-tracing" "1.0.0-preview.4"
     "@azure/identity" "1.0.0-preview.5"
+    tslib "^1.9.3"
+
+"@azure/logger@1.0.0-preview.1":
+  version "1.0.0-preview.1"
+  resolved "https://registry.yarnpkg.com/@azure/logger/-/logger-1.0.0-preview.1.tgz#9be1dfad27f1f868301443c51986d4069a99bb9f"
+  integrity sha512-IZqcABYFnlA4blARodptCPeoOp7d9nNTvnQ3a7nf9THDPufz7nzzX6fVqi3OsLcs3+ip7La82OghVhjwiue8fA==
+  dependencies:
     tslib "^1.9.3"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.5.5":
@@ -908,15 +967,6 @@
     regexpp "^2.0.1"
     tsutils "^3.17.1"
 
-"@typescript-eslint/experimental-utils@2.3.3":
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-2.3.3.tgz#0685613063ff397cfa9209be2e6e81c0382a9b11"
-  integrity sha512-MQ4jKPMTU1ty4TigJCRKFPye2qyQdH8jzIIkceaHgecKFmkNS1hXPqKiZ+mOehkz6+HcN5Nuvwm+frmWZR9tdg==
-  dependencies:
-    "@types/json-schema" "^7.0.3"
-    "@typescript-eslint/typescript-estree" "2.3.3"
-    eslint-scope "^5.0.0"
-
 "@typescript-eslint/experimental-utils@2.6.0":
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-2.6.0.tgz#ed70bef72822bff54031ff0615fc888b9e2b6e8a"
@@ -935,16 +985,6 @@
     "@typescript-eslint/experimental-utils" "2.6.0"
     "@typescript-eslint/typescript-estree" "2.6.0"
     eslint-visitor-keys "^1.1.0"
-
-"@typescript-eslint/typescript-estree@2.3.3":
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-2.3.3.tgz#be802220876bedfb80384cde1d46fe57ae7abf71"
-  integrity sha512-GkACs12Xp8d/STunNv/iSMYJFQrkrax9vuPZySlgSzoJJtw1cp6tbEw4qsLskQv6vloLrkFJHcTJ0a/yCB5cIA==
-  dependencies:
-    glob "^7.1.4"
-    is-glob "^4.0.1"
-    lodash.unescape "4.0.1"
-    semver "^6.3.0"
 
 "@typescript-eslint/typescript-estree@2.6.0":
   version "2.6.0"
