@@ -17,14 +17,6 @@
     "@azure/core-http" "1.0.0-preview.3"
     tslib "^1.9.3"
 
-"@azure/core-arm@1.0.0-preview.5":
-  version "1.0.0-preview.5"
-  resolved "https://registry.yarnpkg.com/@azure/core-arm/-/core-arm-1.0.0-preview.5.tgz#91d78e05c9abc6dd40dcbd884455403c1d66d81e"
-  integrity sha512-lxxKxQdmq1bzo60VpZCdBqPH/v0Zffz047uvUjVIQ27/c7VtOUyMX3tseUWXCI62RyTzR7gK+Iw7Buij9fEzHg==
-  dependencies:
-    "@azure/core-http" "1.0.0-preview.5"
-    tslib "^1.9.3"
-
 "@azure/core-asynciterator-polyfill@1.0.0-preview.1":
   version "1.0.0-preview.1"
   resolved "https://registry.yarnpkg.com/@azure/core-asynciterator-polyfill/-/core-asynciterator-polyfill-1.0.0-preview.1.tgz#ad7c726cfd73c946dbfbc3e485338ccf678fc75a"
@@ -66,25 +58,6 @@
     uuid "^3.3.2"
     xml2js "^0.4.19"
 
-"@azure/core-http@1.0.0-preview.5":
-  version "1.0.0-preview.5"
-  resolved "https://registry.yarnpkg.com/@azure/core-http/-/core-http-1.0.0-preview.5.tgz#81b9e3755725b676b32add0587ffe80ee2d6d626"
-  integrity sha512-xbbd1HotVW+PKlImSMCEFeT93HhLMSWnroMJ8N24i3K/rP4kGjZn8NoGvMbp+ckJIYOH+/JPYOaXTs+1rJVvsA==
-  dependencies:
-    "@azure/abort-controller" "1.0.0-preview.2"
-    "@azure/core-auth" "1.0.0-preview.3"
-    "@azure/core-tracing" "1.0.0-preview.4"
-    "@types/node-fetch" "^2.5.0"
-    "@types/tunnel" "^0.0.1"
-    form-data "^2.5.0"
-    node-fetch "^2.6.0"
-    process "^0.11.10"
-    tough-cookie "^3.0.1"
-    tslib "^1.9.3"
-    tunnel "^0.0.6"
-    uuid "^3.3.2"
-    xml2js "^0.4.19"
-
 "@azure/core-http@1.0.0-preview.6":
   version "1.0.0-preview.6"
   resolved "https://registry.yarnpkg.com/@azure/core-http/-/core-http-1.0.0-preview.6.tgz#ce77f7fd1f07b079c1101ae861e5ecf7ce332c2c"
@@ -105,6 +78,16 @@
     uuid "^3.3.2"
     xml2js "^0.4.19"
 
+"@azure/core-lro@1.0.0-preview.1":
+  version "1.0.0-preview.1"
+  resolved "https://registry.yarnpkg.com/@azure/core-lro/-/core-lro-1.0.0-preview.1.tgz#760e7ace0739888a79f18591484c7d69077d3960"
+  integrity sha512-EfiRp1WE1gK/i+iyIHy9Ick8BKrMkQvQRW8Y++vHR8aAG8rAWixmSUgZjJD0SzeL7T+m3BXzMqw1+pPyC2Wmow==
+  dependencies:
+    "@azure/abort-controller" "1.0.0-preview.2"
+    "@azure/core-http" "1.0.0-preview.6"
+    events "^3.0.0"
+    tslib "^1.9.3"
+
 "@azure/core-paging@1.0.0-preview.2":
   version "1.0.0-preview.2"
   resolved "https://registry.yarnpkg.com/@azure/core-paging/-/core-paging-1.0.0-preview.2.tgz#a555bd6df3fdae9fb35ab704f157ef73a1e17b10"
@@ -119,14 +102,6 @@
   dependencies:
     tslib "^1.9.3"
 
-"@azure/core-tracing@1.0.0-preview.4":
-  version "1.0.0-preview.4"
-  resolved "https://registry.yarnpkg.com/@azure/core-tracing/-/core-tracing-1.0.0-preview.4.tgz#244686bd7e48a49c67e1b840d80ea9edda22884c"
-  integrity sha512-xl6mAe1dqVxD1PH2Qnx/XFlblQcItG/lNUcPa1qp7+MrLKP4Wb7hoOK1mZfCkGKZZW4SGkRxwS9b+dR4R4x8Uw==
-  dependencies:
-    "@opencensus/web-types" "0.0.7"
-    tslib "^1.9.3"
-
 "@azure/core-tracing@1.0.0-preview.5":
   version "1.0.0-preview.5"
   resolved "https://registry.yarnpkg.com/@azure/core-tracing/-/core-tracing-1.0.0-preview.5.tgz#656892565a9d1920be2008c9609429e37e13443c"
@@ -134,20 +109,6 @@
   dependencies:
     "@opencensus/web-types" "0.0.7"
     tslib "^1.9.3"
-
-"@azure/identity@1.0.0-preview.5":
-  version "1.0.0-preview.5"
-  resolved "https://registry.yarnpkg.com/@azure/identity/-/identity-1.0.0-preview.5.tgz#9c4918dd2096151797dd879c5a9206fb114717df"
-  integrity sha512-ScJYcSWxnM/ScfcWI7p/awCOhMz98HbQZN2WrxnzpQ76lVD8d2luJq0AV/YUJvoroCgi9LTRdv4W2sMVNDUtNA==
-  dependencies:
-    "@azure/core-http" "1.0.0-preview.5"
-    "@azure/core-tracing" "1.0.0-preview.4"
-    events "^3.0.0"
-    jws "^3.2.2"
-    msal "^1.0.2"
-    qs "^6.7.0"
-    tslib "^1.9.3"
-    uuid "^3.3.2"
 
 "@azure/identity@^1.0.0-preview.3":
   version "1.0.0-preview.6"
@@ -165,16 +126,16 @@
     uuid "^3.3.2"
 
 "@azure/keyvault-secrets@^4.0.0-preview.5":
-  version "4.0.0-preview.8"
-  resolved "https://registry.yarnpkg.com/@azure/keyvault-secrets/-/keyvault-secrets-4.0.0-preview.8.tgz#c43295b9a5cc6a896d385b519c19c1b0c5426176"
-  integrity sha512-nB/lkHU1PCmRV2WUPdTecVZTSrrNzgJTbVtg+6AAnfEzlRvlg4w+DpjDzqKlPN2KrVdVXHEA4x/r7zjMfAdMaw==
+  version "4.0.0-preview.9"
+  resolved "https://registry.yarnpkg.com/@azure/keyvault-secrets/-/keyvault-secrets-4.0.0-preview.9.tgz#d4c777f1fc285a59ff33a87cc4ac60bb15ad07c4"
+  integrity sha512-1edsYF1janNJpetcqBOgkvb12o/tt8RP4sZV14ILfyoFor2I1ez8nH8iG143rT+hchQU5EtyD2Y9dWNu68UajQ==
   dependencies:
     "@azure/abort-controller" "1.0.0-preview.2"
-    "@azure/core-arm" "1.0.0-preview.5"
-    "@azure/core-http" "1.0.0-preview.5"
+    "@azure/core-http" "1.0.0-preview.6"
+    "@azure/core-lro" "1.0.0-preview.1"
     "@azure/core-paging" "1.0.0-preview.2"
-    "@azure/core-tracing" "1.0.0-preview.4"
-    "@azure/identity" "1.0.0-preview.5"
+    "@azure/core-tracing" "1.0.0-preview.5"
+    "@azure/logger" "1.0.0-preview.1"
     tslib "^1.9.3"
 
 "@azure/logger@1.0.0-preview.1":
