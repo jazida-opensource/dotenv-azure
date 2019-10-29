@@ -71,7 +71,7 @@ DATABASE_URL=kv:https://your.vault.azure.net/secrets/DatabaseUrl/7091540ce97143d
 After calling `.config()` method, the value of your key vault scret will be set to process.env:
 
 ```javascript
-const DotenvAzure = require('dotenv-azure')
+const { DotenvAzure } = require('dotenv-azure')
 
 async function main () {
   await new DotenvAzure().config()
@@ -85,7 +85,7 @@ main()
 
 You should call `dotenv-azure` before the initialization of your app. Since the method `.config()` returns a promise, you have to call it inside an async function:
 ```javascript
-const DotenvAzure = require('dotenv-azure')
+const { DotenvAzure } = require('dotenv-azure')
 
 async function main () {
   const dotenvAzure = new DotenvAzure()
@@ -138,7 +138,7 @@ When populating `process.env` `dotenv-azure` will follow these steps:
 You can pass a `safe` option to validate your variables from a `.env.example` file like [dotenv-safe](https://github.com/rolodato/dotenv-safe):
 
 ```javascript
-const DotenvAzure = require('dotenv-azure')
+const { DotenvAzure } = require('dotenv-azure')
 const dotenvAzure = new DotenvAzure()
 
 async function main () {
