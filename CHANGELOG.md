@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/jazida-opensource/dotenv-azure/compare/v1.0.0...v1.0.1) (2019-10-29)
+
+
+### Bug Fixes
+
+* **readme.md:** fix code examples ([#67](https://github.com/jazida-opensource/dotenv-azure/issues/67)) ([119fd23](https://github.com/jazida-opensource/dotenv-azure/commit/119fd23))
+
 # 1.0.0 (2019-09-19)
 
 
