@@ -104,7 +104,7 @@
     "typescript": "^3.6.3"
   },
   "dependencies": {
-    "@azure/core-arm": "1.0.0-preview.3",
+    "@azure/core-arm": "1.0.0-preview.6",
     "@azure/core-http": "1.0.0-preview.3",
     "@azure/identity": "^1.0.0-preview.3",
     "@azure/keyvault-secrets": "^4.0.0-preview.5",
