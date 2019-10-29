@@ -15,7 +15,13 @@ All notable changes to this project will be documented in this file. See
 
 ### Bug Fixes
 
+* bug fixes ([31a2669](https://github.com/jazida-opensource/dotenv-azure/commit/31a2669))
+* limit concurrency to avoid Azure AD rate limiting ([#29](https://github.com/jazida-opensource/dotenv-azure/issues/29)) ([c5b2aeb](https://github.com/jazida-opensource/dotenv-azure/commit/c5b2aeb))
 * remove console.log ([5efa352](https://github.com/jazida-opensource/dotenv-azure/commit/5efa352))
+* semantic-release version ([5d355b2](https://github.com/jazida-opensource/dotenv-azure/commit/5d355b2))
+* tests, coverage and changelog ([74c0679](https://github.com/jazida-opensource/dotenv-azure/commit/74c0679))
+* update semantic-release dependencies ([7e1c970](https://github.com/jazida-opensource/dotenv-azure/commit/7e1c970))
+* version ([9e54cfd](https://github.com/jazida-opensource/dotenv-azure/commit/9e54cfd))
 
 # [1.0.0-beta.2](https://github.com/jazida-opensource/dotenv-azure/compare/v1.0.0-beta.1@beta...v1.0.0-beta.2@beta) (2019-10-04)
 
