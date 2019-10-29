@@ -2479,7 +2479,7 @@ AZURE_TENANT_ID=<span class="hljs-string">"tenant-ID"</span></code></pre>
 			<p>Let&#39;s assume you have created a secret in Key Vault, copied the secret url and created a new configuration in App Configuration with a value of the url of your secret:</p>
 			<pre><code class="language-bash">DATABASE_URL=kv:https://your.vault.azure.net/secrets/DatabaseUrl/7091540ce97143deb08790a53fc2a75d</code></pre>
 			<p>After calling <code>.config()</code> method, the value of your key vault scret will be set to process.env:</p>
-			<pre><code class="language-javascript"><span class="hljs-keyword">const</span> DotenvAzure = <span class="hljs-built_in">require</span>(<span class="hljs-string">'dotenv-azure'</span>)
+			<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { DotenvAzure } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'dotenv-azure'</span>)
 
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span> (<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> DotenvAzure().config()
@@ -2491,7 +2491,7 @@ main()</code></pre>
 				<h4>Using dotenv-azure programmatically</h4>
 			</a>
 			<p>You should call <code>dotenv-azure</code> before the initialization of your app. Since the method <code>.config()</code> returns a promise, you have to call it inside an async function:</p>
-			<pre><code class="language-javascript"><span class="hljs-keyword">const</span> DotenvAzure = <span class="hljs-built_in">require</span>(<span class="hljs-string">'dotenv-azure'</span>)
+			<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { DotenvAzure } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'dotenv-azure'</span>)
 
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span> (<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">const</span> dotenvAzure = <span class="hljs-keyword">new</span> DotenvAzure()
@@ -2534,7 +2534,7 @@ main()</code></pre>
 				<h2>Options</h2>
 			</a>
 			<p>You can pass a <code>safe</code> option to validate your variables from a <code>.env.example</code> file like <a href="https://github.com/rolodato/dotenv-safe">dotenv-safe</a>:</p>
-			<pre><code class="language-javascript"><span class="hljs-keyword">const</span> DotenvAzure = <span class="hljs-built_in">require</span>(<span class="hljs-string">'dotenv-azure'</span>)
+			<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { DotenvAzure } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'dotenv-azure'</span>)
 <span class="hljs-keyword">const</span> dotenvAzure = <span class="hljs-keyword">new</span> DotenvAzure()
 
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span> (<span class="hljs-params"></span>) </span>{
@@ -2621,7 +2621,7 @@ main()</code></pre>
 				<div class="tsd-signature tsd-kind-icon">Dotenv<wbr>Azure<wbr>Parse<wbr>Output<span class="tsd-signature-symbol">:</span> <a href="globals.html#variablesobject" class="tsd-signature-type">VariablesObject</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/8261290/src/types.ts#L60">types.ts:60</a></li>
+						<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/119fd23/src/types.ts#L60">types.ts:60</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -2631,7 +2631,7 @@ main()</code></pre>
 				<div class="tsd-signature tsd-kind-icon">Variables<wbr>Object<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/8261290/src/types.ts#L14">types.ts:14</a></li>
+						<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/119fd23/src/types.ts#L14">types.ts:14</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2661,7 +2661,7 @@ main()</code></pre>
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/8261290/src/utils.ts#L11">utils.ts:11</a></li>
+								<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/119fd23/src/utils.ts#L11">utils.ts:11</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2684,7 +2684,7 @@ main()</code></pre>
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/8261290/src/utils.ts#L7">utils.ts:7</a></li>
+								<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/119fd23/src/utils.ts#L7">utils.ts:7</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2710,7 +2710,7 @@ main()</code></pre>
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/8261290/src/utils.ts#L36">utils.ts:36</a></li>
+								<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/119fd23/src/utils.ts#L36">utils.ts:36</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2741,7 +2741,7 @@ main()</code></pre>
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/8261290/src/utils.ts#L21">utils.ts:21</a></li>
+								<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/119fd23/src/utils.ts#L21">utils.ts:21</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
