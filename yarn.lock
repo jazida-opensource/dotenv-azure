@@ -16,20 +16,20 @@
   dependencies:
     tslib "^1.9.3"
 
-"@azure/core-arm@1.0.0-preview.3":
-  version "1.0.0-preview.3"
-  resolved "https://registry.yarnpkg.com/@azure/core-arm/-/core-arm-1.0.0-preview.3.tgz#b1a240a726e52cd1fa37378ae15b29079a0070aa"
-  integrity sha512-YZZM1EIcJnH7ahIBy0wAZDTXeeNZiPYJnRMWl3wZ2PblSHUVdq1D2ZRZWwQWeWlgrNXhsO2HC/9ZAwq8OihRFw==
-  dependencies:
-    "@azure/core-http" "1.0.0-preview.3"
-    tslib "^1.9.3"
-
 "@azure/core-arm@1.0.0-preview.5":
   version "1.0.0-preview.5"
   resolved "https://registry.yarnpkg.com/@azure/core-arm/-/core-arm-1.0.0-preview.5.tgz#91d78e05c9abc6dd40dcbd884455403c1d66d81e"
   integrity sha512-lxxKxQdmq1bzo60VpZCdBqPH/v0Zffz047uvUjVIQ27/c7VtOUyMX3tseUWXCI62RyTzR7gK+Iw7Buij9fEzHg==
   dependencies:
     "@azure/core-http" "1.0.0-preview.5"
+    tslib "^1.9.3"
+
+"@azure/core-arm@1.0.0-preview.7":
+  version "1.0.0-preview.7"
+  resolved "https://registry.yarnpkg.com/@azure/core-arm/-/core-arm-1.0.0-preview.7.tgz#2b62b89718b5f58e1e4d59b5d9e655b34e73b526"
+  integrity sha512-ZRPkQuzFuT3H/XK81dHVSjCfmfgiPMpJWBZWCEkZAogysZEtO3ydwzIXn95KsRWLJzfoT9m9TYwccSB5Brs+bg==
+  dependencies:
+    "@azure/core-http" "^1.0.0"
     tslib "^1.9.3"
 
 "@azure/core-asynciterator-polyfill@1.0.0-preview.1":
