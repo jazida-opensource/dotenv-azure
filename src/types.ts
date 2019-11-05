@@ -1,29 +1,10 @@
 import { DotenvConfigOptions, DotenvConfigOutput } from 'dotenv'
 
-export interface AzureCredentials {
-  appConfigUrl?: string
-  appConfigConnectionString?: string
-  clientId?: string
-  clientSecret?: string
-  tenantId?: string
-}
-
 /**
  * An object with keys and values
  */
 export type VariablesObject = {
-  [name: string]: string
-}
-
-export interface DotenvAzureOptions {
-  /**
-   * You can pass the url of the App Configuration intstead of the environment variable AZURE_APP_CONFIG_URL
-   */
-  appConfigUrl?: string
-  /**
-   * Number of requests per second to avoid Azure AD rate limiter. Default: 45
-   */
-  rateLimit?: number
+  [key: string]: string | undefined
 }
 
 export interface DotenvAzureConfigOptions extends DotenvConfigOptions {
@@ -56,7 +37,7 @@ export interface DotenvAzureConfigOutput {
   azure: VariablesObject
 
   /**
-   * Merged variables from Azure App Configuration, Key Vault variables and `.env` file
+   * Merged variables from Azure App Configuration and `.env` file
    */
   parsed: VariablesObject
 }
