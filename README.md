@@ -38,12 +38,9 @@ yarn add dotenv-azure
 #### Configuring App Configuration
 
 1. [Create an app configuration store via Azure portal or CLI](https://docs.microsoft.com/en-us/azure/azure-app-configuration/quickstart-aspnet-core-app#create-an-app-configuration-store).
-2. Set **AZURE_APP_CONFIG_URL** and **AZURE_APP_CONFIG_CONNECTION_STRING** as environment variables using bash or put them in a `.env` file:
-
-> In production, if you are using [Azure Managed Identities](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview), you just have to set **AZURE_APP_CONFIG_URL**.
+2. Set **AZURE_APP_CONFIG_CONNECTION_STRING** as environment variable using bash or put them in a `.env` file:
 
 ```bash
-AZURE_APP_CONFIG_URL="https://your-app-config.azconfig.io"
 AZURE_APP_CONFIG_CONNECTION_STRING="generated-app-config-conneciton-string"
 ```
 
@@ -61,14 +58,15 @@ AZURE_CLIENT_SECRET="random-password"
 AZURE_TENANT_ID="tenant-ID"
 ```
 
-If you have a configuration in Azure App Configuration with a value starting with `kv:`, `dotenv-azure` will try to load them from key vault.
+If you have a configuration in App Configuration with the content type `application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8` then `dotenv-azure` will try to load it from Key Vault.
 
-Let's assume you have created a secret in Key Vault, copied the secret url and created a new configuration in App Configuration with a value of the url of your secret:
-```bash
-DATABASE_URL=kv:https://your.vault.azure.net/secrets/DatabaseUrl/7091540ce97143deb08790a53fc2a75d
-```
+You can [add a Key Vault reference](https://docs.microsoft.com/en-us/azure/azure-app-configuration/use-key-vault-references-dotnet-core) to App Configuration in the Azure portal:
 
-After calling `.config()` method, the value of your key vault scret will be set to process.env:
+1. Sign in to the Azure portal. Select All resources, and then select the App Configuration store instance that you created in the quickstart
+2. Select Configuration Explorer
+3. Select + Create > Key vault reference
+
+Now when you call the `.config()` method, the value of your key vault secret will be set to process.env:
 
 ```javascript
 const { DotenvAzure } = require('dotenv-azure')
