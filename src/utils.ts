@@ -14,17 +14,6 @@ export function compact(obj: VariablesObject): VariablesObject {
   return result
 }
 
-export function testIfValueIsVaultSecret(value: string): URL | undefined {
-  const result = /^kv:(.+)/.exec(value)
-  let keyVaultUrl
-  try {
-    keyVaultUrl = result ? new URL(result[1]) : undefined
-  } catch {
-    // noop
-  }
-  return keyVaultUrl
-}
-
 /**
  * Add variable if does not exist in process.env
  * @param variables - an object with keys and values

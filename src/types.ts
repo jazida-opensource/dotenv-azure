@@ -20,9 +20,9 @@ export interface AppConfigurations {
 }
 
 export interface KeyVaultReferenceInfo {
-  vaultUrl: URL,
-  secretUrl: URL,
-  secretName: string,
+  vaultUrl: URL
+  secretUrl: URL
+  secretName: string
   secretVersion?: string
 }
 
@@ -30,15 +30,12 @@ export interface KeyVaultReferences {
   [key: string]: KeyVaultReferenceInfo
 }
 
-export interface AppConfigurationOptions {
+export interface DotenvAzureOptions {
   /**
    * You can pass the connection string of the App Configuration
    * intstead of the environment variable AZURE_APP_CONFIG_CONNECTION_STRING
    */
   connectionString?: string
-}
-
-export interface KeyVaultOptions {
   /**
    * You can pass the id of the principal's Azure Active Directory tenant
    * intstead of the environment variable AZURE_TENANT_ID
@@ -58,11 +55,6 @@ export interface KeyVaultOptions {
    * Number of requests per second to avoid Azure AD rate limiter. Default: 45
    */
   rateLimit?: number
-}
-
-export interface DotenvAzureOptions {
-  appConfig?: AppConfigurationOptions
-  keyVault?: KeyVaultOptions
 }
 
 export interface DotenvAzureConfigOptions extends DotenvConfigOptions {

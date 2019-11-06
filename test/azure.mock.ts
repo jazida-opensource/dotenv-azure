@@ -1,25 +1,29 @@
+import { ConfigurationSetting } from '@azure/app-configuration'
+import { GetSecretOptions, KeyVaultSecret } from '@azure/keyvault-secrets'
+
 export interface AppConfigListItemMock {
   key: string
   value: string
 }
 
-export function mockAppConfigListResponse(items: AppConfigListItemMock[]) {
-  return {
-    _response: {
-      parsedBody: { items }
-    }
+export async function* mockAppConfigListResponse(items: ConfigurationSetting[]) {
+  for (const item of items) {
+    yield item
   }
 }
 
 export const appConfigListMock = jest.fn(() =>
   mockAppConfigListResponse([
     {
+      readOnly: false,
       key: 'APP_CONFIG_VAR',
       value: 'ok'
     },
     {
+      readOnly: true,
       key: 'KEY_VAULT_VAR',
-      value: 'kv:https://key.vault.azure.net/secrets/DatabaseUrl/7091540ce97143deb08790a53fc2a75d'
+      value: '{"uri": "https://key.vault.azure.net/secrets/DatabaseUrl/7091540ce97143deb08790a53fc2a75d"}',
+      contentType: 'application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8'
     }
   ])
 )
@@ -34,13 +38,18 @@ export const AppConfigurationClientMock = jest.mock('@azure/app-configuration', 
 }))
 
 export const secretsClientMock = jest.mock('@azure/keyvault-secrets', () => ({
-  SecretsClient: class SecretsClient {
+  SecretClient: class SecretClient {
     getSecret: any
     constructor() {
-      this.getSecret = () => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      this.getSecret = async (secretName: string, options?: GetSecretOptions): Promise<KeyVaultSecret> => {
         return {
-          key: 'DatabaseUrl',
-          value: 'ok'
+          name: secretName,
+          value: 'ok',
+          properties: {
+            vaultUrl: 'https://key.vault.azure.net',
+            name: 'DatabaseUrl'
+          }
         }
       }
     }

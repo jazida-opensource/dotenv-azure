@@ -19,22 +19,25 @@ import {
 } from './types'
 
 export default class DotenvAzure {
+  private readonly keyVaultRateLimitMinTime: number
   private readonly connectionString?: string
   private readonly tenantId?: string
   private readonly clientId?: string
   private readonly clientSecret?: string
-  private readonly keyVaultRateLimitMinTime: number
   private readonly keyVaultClients: {
     [vaultURL: string]: SecretClient
-  } = {}
+  }
 
   /**
    * Initializes a new instance of the DotenvAzure class.
    */
-  constructor({ appConfig = {}, keyVault = {} }: DotenvAzureOptions = {}) {
-    const { rateLimit = 45 } = keyVault
-    this.connectionString = appConfig.connectionString
+  constructor({ rateLimit = 45, tenantId, clientId, clientSecret, connectionString }: DotenvAzureOptions = {}) {
     this.keyVaultRateLimitMinTime = Math.ceil(1000 / rateLimit)
+    this.connectionString = connectionString
+    this.tenantId = tenantId
+    this.clientId = clientId
+    this.clientSecret = clientSecret
+    this.keyVaultClients = {}
   }
 
   /**
