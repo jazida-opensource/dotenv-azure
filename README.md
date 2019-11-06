@@ -6,7 +6,6 @@
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 [![LICENSE](https://img.shields.io/github/license/jazida-opensource/dotenv-azure.svg)](LICENSE)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
-[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 Load environment variables from Azure's services [App Configuration](https://azure.microsoft.com/en-us/services/app-configuration/), [Key Vault](https://azure.microsoft.com/en-us/services/key-vault/) or a `.env` file with an api similar to [dotenv](https://github.com/motdotla/dotenv).
 
