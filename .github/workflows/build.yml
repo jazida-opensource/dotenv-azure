@@ -57,9 +57,9 @@ jobs:
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: ./docs
 
-      - name: Create release
-        if: success() && startsWith(matrix.node-version, '10') && github.event_name == 'push'
-        run: yarn semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - name: Create release
+      #   if: success() && startsWith(matrix.node-version, '10') && github.event_name == 'push'
+      #   run: yarn semantic-release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
