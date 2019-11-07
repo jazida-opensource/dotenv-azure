@@ -3,27 +3,12 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.0.1-beta.1](https://github.com/jazida-opensource/dotenv-azure/compare/v1.0.0...v1.0.1-beta.1@beta) (2019-10-29)
+# [1.0.0-beta.7](https://github.com/jazida-opensource/dotenv-azure/compare/v1.0.0-beta.4@beta...v1.0.0-beta.7@beta) (2019-11-06)
 
 
-### Bug Fixes
+### Changes
 
-* bug fixes ([31a2669](https://github.com/jazida-opensource/dotenv-azure/commit/31a2669))
-* limit concurrency to avoid Azure AD rate limiting ([#29](https://github.com/jazida-opensource/dotenv-azure/issues/29)) ([c5b2aeb](https://github.com/jazida-opensource/dotenv-azure/commit/c5b2aeb))
-* rate limit requsts by second ([#45](https://github.com/jazida-opensource/dotenv-azure/issues/45)) ([5cb9de3](https://github.com/jazida-opensource/dotenv-azure/commit/5cb9de3))
-* remove console.log ([5efa352](https://github.com/jazida-opensource/dotenv-azure/commit/5efa352))
-* semantic-release version ([5d355b2](https://github.com/jazida-opensource/dotenv-azure/commit/5d355b2))
-* tests, coverage and changelog ([74c0679](https://github.com/jazida-opensource/dotenv-azure/commit/74c0679))
-* update semantic-release dependencies ([7e1c970](https://github.com/jazida-opensource/dotenv-azure/commit/7e1c970))
-* version ([9e54cfd](https://github.com/jazida-opensource/dotenv-azure/commit/9e54cfd))
-* **readme.md:** fix code examples ([#67](https://github.com/jazida-opensource/dotenv-azure/issues/67)) ([119fd23](https://github.com/jazida-opensource/dotenv-azure/commit/119fd23))
-
-## [1.0.0-beta.6](https://github.com/jazida-opensource/dotenv-azure/compare/v1.0.0...v1.0.0-beta.6@beta) (2019-10-29)
-
-
-### Bug Fixes
-
-* **readme.md:** fix code examples ([#67](https://github.com/jazida-opensource/dotenv-azure/issues/67)) ([119fd23](https://github.com/jazida-opensource/dotenv-azure/commit/119fd23))
+* refactor Key Vault references ([#88](https://github.com/jazida-opensource/dotenv-azure/pull/88)) ([f6d1a65](https://github.com/jazida-opensource/dotenv-azure/commit/f6d1a65))
 
 # [1.0.0-beta.4](https://github.com/jazida-opensource/dotenv-azure/compare/v1.0.0-beta.3@beta...v1.0.0-beta.4@beta) (2019-10-14)
 
