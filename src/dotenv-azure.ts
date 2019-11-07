@@ -1,10 +1,10 @@
 import * as fs from 'fs'
 import Bottleneck from 'bottleneck'
-import dotenv, { DotenvParseOptions } from 'dotenv'
+import dotenv, { DotenvParseOptions, DotenvParseOutput } from 'dotenv'
 import { ManagedIdentityCredential, ClientSecretCredential } from '@azure/identity'
-import { SecretsClient } from '@azure/keyvault-secrets'
-import { AppConfigurationClient, ModelConfigurationSetting } from '@azure/app-configuration'
-import { testIfValueIsVaultSecret, compact, difference, populateProcessEnv } from './utils'
+import { SecretClient } from '@azure/keyvault-secrets'
+import { AppConfigurationClient, ConfigurationSetting } from '@azure/app-configuration'
+import { compact, difference, populateProcessEnv } from './utils'
 import { MissingEnvVarsError, InvalidKeyVaultUrlError, MissingAppConfigCredentialsError } from './errors'
 import {
   DotenvAzureOptions,
@@ -12,23 +12,32 @@ import {
   DotenvAzureConfigOutput,
   DotenvAzureParseOutput,
   VariablesObject,
-  AzureCredentials
+  AzureCredentials,
+  AppConfigurations,
+  KeyVaultReferenceInfo,
+  KeyVaultReferences
 } from './types'
 
 export default class DotenvAzure {
-  private readonly rateLimitMinTime: number
-  private readonly appConfigUrl?: string
+  private readonly keyVaultRateLimitMinTime: number
+  private readonly connectionString?: string
+  private readonly tenantId?: string
+  private readonly clientId?: string
+  private readonly clientSecret?: string
   private readonly keyVaultClients: {
-    [vaultURL: string]: SecretsClient
+    [vaultURL: string]: SecretClient
   }
 
   /**
    * Initializes a new instance of the DotenvAzure class.
    */
-  constructor({ appConfigUrl, rateLimit = 45 }: DotenvAzureOptions = {}) {
+  constructor({ rateLimit = 45, tenantId, clientId, clientSecret, connectionString }: DotenvAzureOptions = {}) {
+    this.keyVaultRateLimitMinTime = Math.ceil(1000 / rateLimit)
+    this.connectionString = connectionString
+    this.tenantId = tenantId
+    this.clientId = clientId
+    this.clientSecret = clientSecret
     this.keyVaultClients = {}
-    this.appConfigUrl = appConfigUrl
-    this.rateLimitMinTime = Math.ceil(1000 / rateLimit)
   }
 
   /**
@@ -73,14 +82,14 @@ export default class DotenvAzure {
   /**
    * Loads your Azure App Configuration and Key Vault variables.
    * It does not change {@link https://nodejs.org/api/process.html#process_process_env | `process.env`}.
-   * @param vars - an optional object with azure creadentials variables
+   * @param dotenvVars - dotenv parse() output containing azure credentials variables
    * @returns an object with keys and values
    */
-  async loadFromAzure(vars?: VariablesObject): Promise<VariablesObject> {
-    const credentials = this.getAuthVariables(vars)
-    const appConfigClient = this.getAppConfigClient(credentials)
-    const appConfigVars = await this.getVariablesFromAppConfig(appConfigClient)
-    const keyVaultSecrets = await this.getSecretsFromKeyVault(credentials, appConfigVars)
+  async loadFromAzure(dotenvVars?: DotenvParseOutput): Promise<VariablesObject> {
+    const credentials = this.getAzureCredentials(dotenvVars)
+    const appConfigClient = new AppConfigurationClient(credentials.connectionString)
+    const { appConfigVars, keyVaultReferences: keyvaultReferences } = await this.getAppConfigurations(appConfigClient)
+    const keyVaultSecrets = await this.getSecretsFromKeyVault(credentials, keyvaultReferences)
     return { ...appConfigVars, ...keyVaultSecrets }
   }
 
@@ -94,91 +103,93 @@ export default class DotenvAzure {
     }
   }
 
-  protected async getVariablesFromAppConfig(client: AppConfigurationClient): Promise<VariablesObject> {
-    let vars: VariablesObject = {}
-    const request = await client.listConfigurationSettings()
-    const body = request._response.parsedBody
+  protected async getAppConfigurations(client: AppConfigurationClient): Promise<AppConfigurations> {
+    const appConfigVars: VariablesObject = {}
+    const keyVaultReferences: KeyVaultReferences = {}
 
-    if (body.items) {
-      vars = body.items
-        .filter(item => item.key)
-        .reduce(
-          (acc, item: ModelConfigurationSetting) => ({
-            ...acc,
-            [item.key || Symbol('key')]: item.value || ''
-          }),
-          {} as VariablesObject
-        )
+    for await (const config of client.listConfigurationSettings()) {
+      if (this.isKeyVaultReference(config)) {
+        keyVaultReferences[config.key] = this.getKeyVaultReferenceInfo(config)
+      } else {
+        appConfigVars[config.key] = config.value
+      }
     }
 
-    return vars
+    return { appConfigVars, keyVaultReferences }
   }
 
   protected async getSecretsFromKeyVault(
     credentials: AzureCredentials,
-    vars: VariablesObject
+    vars: KeyVaultReferences
   ): Promise<VariablesObject> {
     const secrets: VariablesObject = {}
     // limit requests to avoid Azure AD rate limiting
-    const limiter = new Bottleneck({ minTime: this.rateLimitMinTime })
+    const limiter = new Bottleneck({ minTime: this.keyVaultRateLimitMinTime })
 
-    const getSecret = async (key: string, value: string): Promise<void> => {
-      const keyVaultUrl = testIfValueIsVaultSecret(value)
-      if (!keyVaultUrl) return
-
-      const [, , secretName, secretVersion] = keyVaultUrl.pathname.split('/')
-      if (!secretName || !secretVersion) {
-        throw new InvalidKeyVaultUrlError(key.replace('kv:', ''))
-      }
-
-      const keyVaultClient = this.getKeyVaultClient(credentials, keyVaultUrl.origin)
-      const response = await keyVaultClient.getSecret(secretName, { version: secretVersion })
-      secrets[key] = response.value || ''
+    const getSecret = async (key: string, info: KeyVaultReferenceInfo): Promise<void> => {
+      const keyVaultClient = this.getKeyVaultClient(credentials, info.vaultUrl.href)
+      const response = await keyVaultClient.getSecret(info.secretName, { version: info.secretVersion })
+      secrets[key] = response.value
     }
 
-    await Promise.all(Object.entries(vars).map(([key, val]) => limiter.schedule(() => getSecret(key, val))))
-
+    const secretsPromises = Object.entries(vars).map(([key, val]) => limiter.schedule(() => getSecret(key, val)))
+    await Promise.all(secretsPromises)
     return secrets
   }
 
-  protected getAppConfigClient(credentials: AzureCredentials): AppConfigurationClient {
-    const { appConfigUrl = '', appConfigConnectionString } = credentials
-    if (appConfigConnectionString) {
-      return new AppConfigurationClient(appConfigConnectionString)
-    } else {
-      return new AppConfigurationClient(appConfigUrl, new ManagedIdentityCredential())
-    }
-  }
-
-  protected getKeyVaultClient(credentials: AzureCredentials, vaultURL: string): SecretsClient {
+  protected getKeyVaultClient(credentials: AzureCredentials, vaultURL: string): SecretClient {
     const { tenantId, clientId, clientSecret } = credentials
 
     if (!this.keyVaultClients[vaultURL]) {
       if (tenantId && clientId && clientSecret) {
-        this.keyVaultClients[vaultURL] = new SecretsClient(
+        this.keyVaultClients[vaultURL] = new SecretClient(
           vaultURL,
           new ClientSecretCredential(tenantId, clientId, clientSecret)
         )
       } else {
-        this.keyVaultClients[vaultURL] = new SecretsClient(vaultURL, new ManagedIdentityCredential())
+        this.keyVaultClients[vaultURL] = new SecretClient(vaultURL, new ManagedIdentityCredential())
       }
     }
 
     return this.keyVaultClients[vaultURL]
   }
 
-  private getAuthVariables(dotenvVars: VariablesObject = {}): AzureCredentials {
+  protected getKeyVaultReferenceInfo({ key, value }: ConfigurationSetting): KeyVaultReferenceInfo {
+    try {
+      const obj = value && JSON.parse(value)
+      const keyVaultUrl = new URL(obj.uri)
+      const [, , secretName, secretVersion] = keyVaultUrl.pathname.split('/')
+      if (!secretName) {
+        throw new Error('KeyVault URL does not have a secret name')
+      }
+      return {
+        vaultUrl: new URL(keyVaultUrl.origin),
+        secretUrl: keyVaultUrl,
+        secretName,
+        secretVersion
+      }
+    } catch {
+      throw new InvalidKeyVaultUrlError(key)
+    }
+  }
+
+  protected isKeyVaultReference(config: ConfigurationSetting): boolean {
+    return config.contentType === 'application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8'
+  }
+
+  private getAzureCredentials(dotenvVars: DotenvParseOutput = {}): AzureCredentials {
     const vars = { ...dotenvVars, ...process.env }
-    if (!vars.AZURE_APP_CONFIG_URL && !vars.AZURE_APP_CONFIG_CONNECTION_STRING && !this.appConfigUrl) {
+    const connectionString = this.connectionString || vars.AZURE_APP_CONFIG_CONNECTION_STRING
+
+    if (!connectionString) {
       throw new MissingAppConfigCredentialsError()
     }
 
     return {
-      appConfigUrl: this.appConfigUrl || vars.AZURE_APP_CONFIG_URL,
-      appConfigConnectionString: vars.AZURE_APP_CONFIG_CONNECTION_STRING,
-      tenantId: vars.AZURE_TENANT_ID,
-      clientId: vars.AZURE_CLIENT_ID,
-      clientSecret: vars.AZURE_CLIENT_SECRET
+      connectionString,
+      tenantId: this.tenantId || vars.AZURE_TENANT_ID,
+      clientId: this.clientId || vars.AZURE_CLIENT_ID,
+      clientSecret: this.clientSecret || vars.AZURE_CLIENT_SECRET
     }
   }
 }
