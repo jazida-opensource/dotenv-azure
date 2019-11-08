@@ -31,7 +31,7 @@ export default class DotenvAzure {
   /**
    * Initializes a new instance of the DotenvAzure class.
    */
-  constructor({ rateLimit = 45, tenantId, clientId, clientSecret, connectionString }: DotenvAzureOptions = {}) {
+  constructor({ rateLimit = 18, tenantId, clientId, clientSecret, connectionString }: DotenvAzureOptions = {}) {
     this.keyVaultRateLimitMinTime = Math.ceil(1000 / rateLimit)
     this.connectionString = connectionString
     this.tenantId = tenantId
@@ -126,8 +126,14 @@ export default class DotenvAzure {
     // limit requests to avoid Azure AD rate limiting
     const limiter = new Bottleneck({ minTime: this.keyVaultRateLimitMinTime })
 
+    limiter.on('failed', (_, info) => {
+      if (info.retryCount < 5) {
+        return 1000
+      }
+    })
+
     const getSecret = async (key: string, info: KeyVaultReferenceInfo): Promise<void> => {
-      const keyVaultClient = this.getKeyVaultClient(credentials, info.vaultUrl.href)
+      const keyVaultClient = this.getKeyVaultClient(credentials, info.vaultUrl.origin)
       const response = await keyVaultClient.getSecret(info.secretName, { version: info.secretVersion })
       secrets[key] = response.value
     }
