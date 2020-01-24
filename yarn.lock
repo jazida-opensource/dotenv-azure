@@ -919,7 +919,12 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*", "@types/node@^12", "@types/node@^12.0.2":
+"@types/node@*", "@types/node@^13":
+  version "13.5.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.5.0.tgz#4e498dbf355795a611a87ae5ef811a8660d42662"
+  integrity sha512-Onhn+z72D2O2Pb2ql2xukJ55rglumsVo1H6Fmyi8mlU9SvKdBk/pUSUAiBY/d9bAOF7VVWajX3sths/+g6ZiAQ==
+
+"@types/node@^12.0.2":
   version "12.12.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.0.tgz#ff3201972d6dc851a9275308a17b9b5094e68057"
   integrity sha512-6N8Sa5AaENRtJnpKXZgvc119PKxT1Lk9VPy4kfT8JF23tIe1qDfaGkBR2DRKJFIA7NptMz+fps//C6aLi1Uoug==
