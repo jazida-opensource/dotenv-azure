@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/jazida-opensource/dotenv-azure/compare/v1.0.0-beta.7@beta...v1.1.0) (2020-04-15)
+
+
+### Changes
+
+* update azure's dependencies [@azure/app-configuration](https://www.npmjs.com/package/@azure/app-configuration),
+[@azure/identity](https://www.npmjs.com/package/@azure/identity) and
+[@azure/keyvault-secrets](https://www.npmjs.com/package/@azure/keyvault-secrets) to stable versions.
+
 # [1.0.0-beta.7](https://github.com/jazida-opensource/dotenv-azure/compare/v1.0.0-beta.4@beta...v1.0.0-beta.7@beta) (2019-11-06)
 
 
