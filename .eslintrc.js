@@ -29,6 +29,13 @@ module.exports = {
         '@typescript-eslint/no-var-requires': 0,
         '@typescript-eslint/explicit-function-return-type': 0
       }
+    },
+    {
+      files: ['*.test.ts', '*.mock.ts'],
+      rules: {
+        '@typescript-eslint/no-explicit-any': 0,
+        '@typescript-eslint/explicit-function-return-type': 0
+      }
     }
   ]
 }

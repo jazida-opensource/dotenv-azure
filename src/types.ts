@@ -1,8 +1,7 @@
-import { DotenvConfigOptions, DotenvParseOutput } from 'dotenv'
+import { DotenvConfigOptions, DotenvConfigOutput } from 'dotenv'
 
 export interface AzureCredentials {
-  appConfigUrl?: string
-  appConfigConnectionString?: string
+  connectionString: string
   clientId?: string
   clientSecret?: string
   tenantId?: string
@@ -12,14 +11,50 @@ export interface AzureCredentials {
  * An object with keys and values
  */
 export type VariablesObject = {
-  [name: string]: string
+  [key: string]: string | undefined
+}
+
+export interface AppConfigurations {
+  appConfigVars: VariablesObject
+  keyVaultReferences: KeyVaultReferences
+}
+
+export interface KeyVaultReferenceInfo {
+  vaultUrl: URL
+  secretUrl: URL
+  secretName: string
+  secretVersion?: string
+}
+
+export interface KeyVaultReferences {
+  [key: string]: KeyVaultReferenceInfo
 }
 
 export interface DotenvAzureOptions {
   /**
-   * You can pass the url of the App Configuration intstead of the environment variable AZURE_APP_CONFIG_URL
+   * You can pass the connection string of the App Configuration
+   * intstead of the environment variable AZURE_APP_CONFIG_CONNECTION_STRING
    */
-  appConfigUrl?: string
+  connectionString?: string
+  /**
+   * You can pass the id of the principal's Azure Active Directory tenant
+   * intstead of the environment variable AZURE_TENANT_ID
+   */
+  tenantId?: string
+  /**
+   * You can pass the service principal's app id
+   * intstead of the environment variable AZURE_CLIENT_ID
+   */
+  clientId?: string
+  /**
+   * You can pass one of the service principal's client secrets
+   * intstead of the environment variable AZURE_CLIENT_SECRET
+   */
+  clientSecret?: string
+  /**
+   * Number of requests per second to avoid Azure AD rate limiter. Default: 45
+   */
+  rateLimit?: number
 }
 
 export interface DotenvAzureConfigOptions extends DotenvConfigOptions {
@@ -42,9 +77,9 @@ export interface DotenvAzureConfigOptions extends DotenvConfigOptions {
 
 export interface DotenvAzureConfigOutput {
   /**
-   * An object with keys and values
+   * The result of dotenv.config()
    */
-  dotenv: DotenvParseOutput
+  dotenv: DotenvConfigOutput
 
   /**
    * Variables from Azure App Configuration and Key Vault

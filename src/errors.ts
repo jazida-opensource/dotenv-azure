@@ -31,6 +31,17 @@ Make sure to add them to ${dotenvFilename} or directly to the environment.`
   }
 }
 
+export class MissingAppConfigCredentialsError extends Error {
+  constructor() {
+    const message =
+      'At least one of the variables AZURE_APP_CONFIG_URL or AZURE_APP_CONFIG_CONNECTION_STRING is required. \
+      You can also pass the option `appConfigUrl` to the DotenvAzure constructor'
+    super(message)
+    this.name = this.constructor.name
+    Error.captureStackTrace(this, this.constructor)
+  }
+}
+
 export class InvalidKeyVaultUrlError extends Error {
   constructor(key: string) {
     const message = `Invalid Azure Key Vault URL: ${key}`
