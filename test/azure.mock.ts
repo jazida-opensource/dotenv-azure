@@ -15,12 +15,12 @@ export async function* mockAppConfigListResponse(items: ConfigurationSetting[]) 
 export const appConfigListMock = jest.fn(() =>
   mockAppConfigListResponse([
     {
-      readOnly: false,
+      isReadOnly: false,
       key: 'APP_CONFIG_VAR',
       value: 'ok'
     },
     {
-      readOnly: true,
+      isReadOnly: true,
       key: 'KEY_VAULT_VAR',
       value: '{"uri": "https://key.vault.azure.net/secrets/DatabaseUrl/7091540ce97143deb08790a53fc2a75d"}',
       contentType: 'application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8'

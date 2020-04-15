@@ -62,12 +62,12 @@ describe('DotenvAzure', () => {
       appConfigListMock.mockReturnValueOnce(
         mockAppConfigListResponse([
           {
-            readOnly: true,
+            isReadOnly: true,
             key: 'APP_CONFIG_VAR',
             value: 'ok'
           },
           {
-            readOnly: false,
+            isReadOnly: false,
             key: 'KEY_VAULT_VAR',
             value: '{"uri": "https://key.vault.azure.net/secrets/"}',
             contentType: 'application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8'
@@ -117,12 +117,12 @@ describe('DotenvAzure', () => {
       appConfigListMock.mockReturnValueOnce(
         mockAppConfigListResponse([
           {
-            readOnly: false,
+            isReadOnly: false,
             key: 'DATABASE_URL',
             value: 'from_appconfig'
           },
           {
-            readOnly: false,
+            isReadOnly: false,
             key: 'PASSWORD',
             value: 'from_appconfig'
           }
@@ -150,12 +150,12 @@ describe('DotenvAzure', () => {
       appConfigListMock.mockReturnValueOnce(
         mockAppConfigListResponse([
           {
-            readOnly: false,
+            isReadOnly: false,
             key: 'DATABASE_URL',
             value: 'from_appconfig'
           },
           {
-            readOnly: false,
+            isReadOnly: false,
             key: 'PASSWORD',
             value: 'from_appconfig'
           }
