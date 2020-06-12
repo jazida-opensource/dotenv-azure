@@ -77,9 +77,6 @@
       "@commitlint/config-conventional"
     ]
   },
-  "resolutions": {
-    "typescript": "^3.7.2"
-  },
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
@@ -110,7 +107,7 @@
     "ts-jest": "^24.1.0",
     "ts-node": "^8.4.1",
     "typedoc": "^0.17.4",
-    "typescript": "^3.7.2"
+    "typescript": "^3.9.5"
   },
   "dependencies": {
     "@azure/app-configuration": "1.0.1",
