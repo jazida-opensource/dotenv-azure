@@ -95,10 +95,10 @@
     "@opentelemetry/api" "^0.6.1"
     tslib "^1.10.0"
 
-"@azure/identity@1.0.2", "@azure/identity@^1.0.0":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@azure/identity/-/identity-1.0.2.tgz#5290035149a89a231469a725fa158e5e1648b349"
-  integrity sha512-kGGiRT9pSlo7Op8I9gBtjufUaqe4AqQv+nPWVOmdDBaf3zD0rPa7zHnDT6dHP/oNdBjlxDczf7Ks+s9KdtAmag==
+"@azure/identity@1.0.3", "@azure/identity@^1.0.0":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@azure/identity/-/identity-1.0.3.tgz#834d05b121c39a36e7d6158bd8df8137ba40b9a1"
+  integrity sha512-yWoOL3WjbD1sAYHdx4buFCGd9mCIHGzlTHgkhhLrmMpBztsfp9ejo5LRPYIV2Za4otfJzPL4kH/vnSLTS/4WYA==
   dependencies:
     "@azure/core-http" "^1.0.0"
     "@azure/core-tracing" "1.0.0-preview.7"
