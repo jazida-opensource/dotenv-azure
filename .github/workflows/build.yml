@@ -44,13 +44,13 @@ jobs:
           CI: true
 
       - name: Report coverage
-        if: startsWith(matrix.node-version, '10') && github.event_name == 'push'
+        if: startsWith(matrix.node-version, '14') && github.event_name == 'push'
         run: npm run coverage
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Deploy docs
-        if: success() && startsWith(matrix.node-version, '10') && github.event_name == 'push' && github.ref == 'refs/heads/master'
+        if: success() && startsWith(matrix.node-version, '14') && github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: peaceiris/actions-gh-pages@v2.3.0
         env:
           ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
@@ -58,7 +58,7 @@ jobs:
           PUBLISH_DIR: ./docs
 
       # - name: Create release
-      #   if: success() && startsWith(matrix.node-version, '10') && github.event_name == 'push'
+      #   if: success() && startsWith(matrix.node-version, '14') && github.event_name == 'push'
       #   run: npm run semantic-release
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
