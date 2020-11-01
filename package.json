@@ -40,6 +40,7 @@
     "prebuild": "rimraf dist",
     "build": "tsc && typedoc",
     "commit": "git-cz",
+    "coverage": "codecov",
     "deploy-docs": "ts-node tools/gh-pages-publish",
     "format": "prettier . --write",
     "format:check": "prettier . --check",

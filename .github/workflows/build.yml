@@ -45,7 +45,7 @@ jobs:
 
       - name: Report coverage
         if: startsWith(matrix.node-version, '10') && github.event_name == 'push'
-        run: npm run codecov
+        run: npm run coverage
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
