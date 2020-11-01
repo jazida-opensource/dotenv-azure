@@ -5,37 +5,37 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'standard',
     'prettier',
-    'prettier/@typescript-eslint'
+    'prettier/@typescript-eslint',
   ],
   parserOptions: {
     ecmaVersion: 2019,
-    sourceType: 'module'
+    sourceType: 'module',
   },
   env: {
     node: true,
-    jest: true
+    jest: true,
   },
   rules: {
     '@typescript-eslint/member-delimiter-style': 0,
     'no-multi-str': 0,
     'no-useless-constructor': 0,
     '@typescript-eslint/no-useless-constructor': 1,
-    'no-dupe-class-members': 0
+    'no-dupe-class-members': 0,
   },
   overrides: [
     {
       files: ['*.js'],
       rules: {
         '@typescript-eslint/no-var-requires': 0,
-        '@typescript-eslint/explicit-function-return-type': 0
-      }
+        '@typescript-eslint/explicit-function-return-type': 0,
+      },
     },
     {
       files: ['*.test.ts', '*.mock.ts'],
       rules: {
         '@typescript-eslint/no-explicit-any': 0,
-        '@typescript-eslint/explicit-function-return-type': 0
-      }
-    }
-  ]
+        '@typescript-eslint/explicit-function-return-type': 0,
+      },
+    },
+  ],
 }

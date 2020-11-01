@@ -1,5 +1,5 @@
 import { ConfigurationSetting } from '@azure/app-configuration'
-import { GetSecretOptions, KeyVaultSecret } from '@azure/keyvault-secrets'
+import { KeyVaultSecret } from '@azure/keyvault-secrets'
 
 export interface AppConfigListItemMock {
   key: string
@@ -17,14 +17,15 @@ export const appConfigListMock = jest.fn(() =>
     {
       isReadOnly: false,
       key: 'APP_CONFIG_VAR',
-      value: 'ok'
+      value: 'ok',
     },
     {
       isReadOnly: true,
       key: 'KEY_VAULT_VAR',
-      value: '{"uri": "https://key.vault.azure.net/secrets/DatabaseUrl/7091540ce97143deb08790a53fc2a75d"}',
-      contentType: 'application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8'
-    }
+      value:
+        '{"uri": "https://key.vault.azure.net/secrets/DatabaseUrl/7091540ce97143deb08790a53fc2a75d"}',
+      contentType: 'application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8',
+    },
   ])
 )
 
@@ -34,24 +35,23 @@ export const AppConfigurationClientMock = jest.mock('@azure/app-configuration', 
     constructor() {
       this.listConfigurationSettings = appConfigListMock
     }
-  }
+  },
 }))
 
 export const secretsClientMock = jest.mock('@azure/keyvault-secrets', () => ({
   SecretClient: class SecretClient {
     getSecret: any
     constructor() {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      this.getSecret = async (secretName: string, options?: GetSecretOptions): Promise<KeyVaultSecret> => {
+      this.getSecret = async (secretName: string): Promise<KeyVaultSecret> => {
         return {
           name: secretName,
           value: 'ok',
           properties: {
             vaultUrl: 'https://key.vault.azure.net',
-            name: 'DatabaseUrl'
-          }
+            name: 'DatabaseUrl',
+          },
         }
       }
     }
-  }
+  },
 }))

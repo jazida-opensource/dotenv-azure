@@ -5,7 +5,11 @@ import { ManagedIdentityCredential, ClientSecretCredential } from '@azure/identi
 import { SecretClient } from '@azure/keyvault-secrets'
 import { AppConfigurationClient, ConfigurationSetting } from '@azure/app-configuration'
 import { compact, difference, populateProcessEnv } from './utils'
-import { MissingEnvVarsError, InvalidKeyVaultUrlError, MissingAppConfigCredentialsError } from './errors'
+import {
+  MissingEnvVarsError,
+  InvalidKeyVaultUrlError,
+  MissingAppConfigCredentialsError,
+} from './errors'
 import {
   DotenvAzureOptions,
   DotenvAzureConfigOptions,
@@ -15,7 +19,7 @@ import {
   AzureCredentials,
   AppConfigurations,
   KeyVaultReferenceInfo,
-  KeyVaultReferences
+  KeyVaultReferences,
 } from './types'
 
 export default class DotenvAzure {
@@ -31,7 +35,13 @@ export default class DotenvAzure {
   /**
    * Initializes a new instance of the DotenvAzure class.
    */
-  constructor({ rateLimit = 45, tenantId, clientId, clientSecret, connectionString }: DotenvAzureOptions = {}) {
+  constructor({
+    rateLimit = 45,
+    tenantId,
+    clientId,
+    clientSecret,
+    connectionString,
+  }: DotenvAzureOptions = {}) {
     this.keyVaultRateLimitMinTime = Math.ceil(1000 / rateLimit)
     this.connectionString = connectionString
     this.tenantId = tenantId
@@ -61,7 +71,7 @@ export default class DotenvAzure {
     return {
       parsed: joinedVars,
       dotenv: dotenvResult,
-      azure: azureVars
+      azure: azureVars,
     }
   }
 
@@ -88,8 +98,8 @@ export default class DotenvAzure {
   async loadFromAzure(dotenvVars?: DotenvParseOutput): Promise<VariablesObject> {
     const credentials = this.getAzureCredentials(dotenvVars)
     const appConfigClient = new AppConfigurationClient(credentials.connectionString)
-    const { appConfigVars, keyVaultReferences: keyvaultReferences } = await this.getAppConfigurations(appConfigClient)
-    const keyVaultSecrets = await this.getSecretsFromKeyVault(credentials, keyvaultReferences)
+    const { appConfigVars, keyVaultReferences } = await this.getAppConfigurations(appConfigClient)
+    const keyVaultSecrets = await this.getSecretsFromKeyVault(credentials, keyVaultReferences)
     return { ...appConfigVars, ...keyVaultSecrets }
   }
 
@@ -128,11 +138,15 @@ export default class DotenvAzure {
 
     const getSecret = async (key: string, info: KeyVaultReferenceInfo): Promise<void> => {
       const keyVaultClient = this.getKeyVaultClient(credentials, info.vaultUrl.href)
-      const response = await keyVaultClient.getSecret(info.secretName, { version: info.secretVersion })
+      const response = await keyVaultClient.getSecret(info.secretName, {
+        version: info.secretVersion,
+      })
       secrets[key] = response.value
     }
 
-    const secretsPromises = Object.entries(vars).map(([key, val]) => limiter.schedule(() => getSecret(key, val)))
+    const secretsPromises = Object.entries(vars).map(([key, val]) =>
+      limiter.schedule(() => getSecret(key, val))
+    )
     await Promise.all(secretsPromises)
     return secrets
   }
@@ -166,7 +180,7 @@ export default class DotenvAzure {
         vaultUrl: new URL(keyVaultUrl.origin),
         secretUrl: keyVaultUrl,
         secretName,
-        secretVersion
+        secretVersion,
       }
     } catch {
       throw new InvalidKeyVaultUrlError(key)
@@ -174,7 +188,9 @@ export default class DotenvAzure {
   }
 
   protected isKeyVaultReference(config: ConfigurationSetting): boolean {
-    return config.contentType === 'application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8'
+    return (
+      config.contentType === 'application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8'
+    )
   }
 
   private getAzureCredentials(dotenvVars: DotenvParseOutput = {}): AzureCredentials {
@@ -189,7 +205,7 @@ export default class DotenvAzure {
       connectionString,
       tenantId: this.tenantId || vars.AZURE_TENANT_ID,
       clientId: this.clientId || vars.AZURE_CLIENT_ID,
-      clientSecret: this.clientSecret || vars.AZURE_CLIENT_SECRET
+      clientSecret: this.clientSecret || vars.AZURE_CLIENT_SECRET,
     }
   }
 }

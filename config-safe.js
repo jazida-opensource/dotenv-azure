@@ -4,7 +4,7 @@ const configSync = forceSync(require.resolve('./config-rpc'))
 
 const { parsed } = configSync({
   safe: true,
-  allowEmptyValues: true
+  allowEmptyValues: true,
 })
 
 populateProcessEnv(parsed)

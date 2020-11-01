@@ -22,7 +22,9 @@ Make sure to add them to ${dotenvFilename} or directly to the environment.`
       ? `Also, the following error was thrown when trying to read variables from  ${dotenvFilename}:\n${error.message}`
       : ''
 
-    const message = [errorMessage, allowEmptyValuesMessage, envErrorMessage].filter(Boolean).join('\n\n')
+    const message = [errorMessage, allowEmptyValuesMessage, envErrorMessage]
+      .filter(Boolean)
+      .join('\n\n')
     super(message)
     this.name = this.constructor.name
     this.missing = missingVars

@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10, 12, 13]
+        node-version: [10, 12, 14, 15]
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js
@@ -23,29 +23,29 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install
-        run: yarn --frozen-lockfile --ignore-engines
+        run: npm ci
         env:
           CI: true
 
       - name: Lint
-        run: yarn lint
+        run: npm run lint
 
       - name: Check code format
-        run: yarn format:check
+        run: npm run format:check
 
       - name: Test
-        run: yarn test
+        run: npm run test
         env:
           CI: true
 
       - name: Build
-        run: yarn build
+        run: npm run build
         env:
           CI: true
 
       - name: Report coverage
         if: startsWith(matrix.node-version, '10') && github.event_name == 'push'
-        run: yarn codecov
+        run: npm run codecov
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
@@ -59,7 +59,7 @@ jobs:
 
       # - name: Create release
       #   if: success() && startsWith(matrix.node-version, '10') && github.event_name == 'push'
-      #   run: yarn semantic-release
+      #   run: npm run semantic-release
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
