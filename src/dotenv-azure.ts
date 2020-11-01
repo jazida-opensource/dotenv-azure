@@ -1,4 +1,5 @@
 import * as fs from 'fs'
+import { URL } from 'url'
 import Bottleneck from 'bottleneck'
 import dotenv, { DotenvParseOptions, DotenvParseOutput } from 'dotenv'
 import { ManagedIdentityCredential, ClientSecretCredential } from '@azure/identity'

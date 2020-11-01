@@ -1,3 +1,4 @@
+import { URL } from 'url'
 import { DotenvConfigOptions, DotenvConfigOutput } from 'dotenv'
 
 export interface AzureCredentials {
