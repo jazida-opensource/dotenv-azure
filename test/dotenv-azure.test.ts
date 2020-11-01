@@ -1,7 +1,11 @@
 import { appConfigListMock, mockAppConfigListResponse } from './azure.mock'
 import DotenvAzure from '../src/dotenv-azure'
 import { readFileSync } from 'fs'
-import { MissingAppConfigCredentialsError, InvalidKeyVaultUrlError, MissingEnvVarsError } from '../src/errors'
+import {
+  MissingAppConfigCredentialsError,
+  InvalidKeyVaultUrlError,
+  MissingEnvVarsError,
+} from '../src/errors'
 
 const dotEnvVarsFileContent = 'DOTENV_VAR=ok'
 const dotenvVars = { DOTENV_VAR: 'ok' }
@@ -19,7 +23,7 @@ describe('DotenvAzure', () => {
   const AZURE_CLIENT_ID = 'client-id'
   const AZURE_CLIENT_SECRET = 'client-secret'
   const dotenvAzure = new DotenvAzure({
-    connectionString: AZURE_APP_CONFIG_CONNECTION_STRING
+    connectionString: AZURE_APP_CONFIG_CONNECTION_STRING,
   })
 
   beforeEach(() => {
@@ -51,7 +55,7 @@ describe('DotenvAzure', () => {
         AZURE_APP_CONFIG_CONNECTION_STRING,
         AZURE_TENANT_ID,
         AZURE_CLIENT_ID,
-        AZURE_CLIENT_SECRET
+        AZURE_CLIENT_SECRET,
       }
       const dotenvAzure = new DotenvAzure()
       const { azure } = await dotenvAzure.config()
@@ -64,14 +68,14 @@ describe('DotenvAzure', () => {
           {
             isReadOnly: true,
             key: 'APP_CONFIG_VAR',
-            value: 'ok'
+            value: 'ok',
           },
           {
             isReadOnly: false,
             key: 'KEY_VAULT_VAR',
             value: '{"uri": "https://key.vault.azure.net/secrets/"}',
-            contentType: 'application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8'
-          }
+            contentType: 'application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8',
+          },
         ])
       )
 
@@ -119,13 +123,13 @@ describe('DotenvAzure', () => {
           {
             isReadOnly: false,
             key: 'DATABASE_URL',
-            value: 'from_appconfig'
+            value: 'from_appconfig',
           },
           {
             isReadOnly: false,
             key: 'PASSWORD',
-            value: 'from_appconfig'
-          }
+            value: 'from_appconfig',
+          },
         ])
       )
 
@@ -134,7 +138,7 @@ describe('DotenvAzure', () => {
       expect(process.env.PASSWORD).toBe('from_dotenv')
       expect(parsed).toEqual({
         DATABASE_URL: 'from_dotenv',
-        PASSWORD: 'from_dotenv'
+        PASSWORD: 'from_dotenv',
       })
     })
 
@@ -152,13 +156,13 @@ describe('DotenvAzure', () => {
           {
             isReadOnly: false,
             key: 'DATABASE_URL',
-            value: 'from_appconfig'
+            value: 'from_appconfig',
           },
           {
             isReadOnly: false,
             key: 'PASSWORD',
-            value: 'from_appconfig'
-          }
+            value: 'from_appconfig',
+          },
         ])
       )
 
@@ -168,14 +172,14 @@ describe('DotenvAzure', () => {
       expect(process.env.PASSWORD).toBe('from_environment')
       expect(parsed).toEqual({
         DATABASE_URL: 'from_dotenv',
-        PASSWORD: 'from_dotenv'
+        PASSWORD: 'from_dotenv',
       })
     })
 
     it('validates against a .env.example file', async () => {
       const { parsed, dotenv, azure } = await dotenvAzure.config({
         safe: true,
-        example: 'myvars/.env.example'
+        example: 'myvars/.env.example',
       })
 
       expect(mockReadFileSync).toBeCalledWith('myvars/.env.example')
@@ -201,7 +205,7 @@ describe('DotenvAzure', () => {
       expect(
         dotenvAzure.config({
           safe: true,
-          example: '.env.example'
+          example: '.env.example',
         })
       ).rejects.toThrowError(MissingEnvVarsError)
     })
@@ -212,7 +216,7 @@ describe('DotenvAzure', () => {
       const result = await dotenvAzure.config({
         safe: true,
         example: '.env.example',
-        allowEmptyValues: true
+        allowEmptyValues: true,
       })
 
       expect(result).toBeDefined()

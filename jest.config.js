@@ -1,6 +1,6 @@
 module.exports = {
   transform: {
-    '.(ts|tsx)': 'ts-jest'
+    '.(ts|tsx)': 'ts-jest',
   },
   testEnvironment: 'node',
   testRegex: '(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$',
@@ -11,8 +11,8 @@ module.exports = {
       branches: 88,
       functions: 95,
       lines: 95,
-      statements: 95
-    }
+      statements: 95,
+    },
   },
-  collectCoverageFrom: ['src/*.{js,ts}']
+  collectCoverageFrom: ['src/*.{js,ts}'],
 }

@@ -24,15 +24,16 @@ If you would like to know more about App Configuration and Key Vault, you may wa
 #### Install the package
 
 Install with npm
+
 ```bash
 npm install dotenv-azure
 ```
 
 or with yarn
+
 ```bash
 yarn add dotenv-azure
 ```
-
 
 #### Configuring App Configuration
 
@@ -70,7 +71,7 @@ Now when you call the `.config()` method, the value of your key vault secret wil
 ```javascript
 const { DotenvAzure } = require('dotenv-azure')
 
-async function main () {
+async function main() {
   await new DotenvAzure().config()
   console.log(process.env.DATABASE_URL) // prints your secret value
 }
@@ -81,10 +82,11 @@ main()
 #### Using dotenv-azure programmatically
 
 You should call `dotenv-azure` before the initialization of your app. Since the method `.config()` returns a promise, you have to call it inside an async function:
+
 ```javascript
 const { DotenvAzure } = require('dotenv-azure')
 
-async function main () {
+async function main() {
   const dotenvAzure = new DotenvAzure()
   const { parsed } = await dotenvAzure.config()
 
@@ -138,11 +140,11 @@ You can pass a `safe` option to validate your variables from a `.env.example` fi
 const { DotenvAzure } = require('dotenv-azure')
 const dotenvAzure = new DotenvAzure()
 
-async function main () {
+async function main() {
   await dotenvAzure.config({
     safe: true,
     allowEmptyValues: true,
-    example: './.my-env-example-filename'
+    example: './.my-env-example-filename',
   })
 }
 
@@ -175,5 +177,3 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 </table>
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-
-
