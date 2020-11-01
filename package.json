@@ -65,8 +65,7 @@
     "{src,test}/**/*.ts": [
       "prettier --write",
       "eslint --fix",
-      "jest --bail --findRelatedTests",
-      "git add"
+      "jest --bail --findRelatedTests"
     ]
   },
   "config": {
