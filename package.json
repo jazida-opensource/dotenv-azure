@@ -48,7 +48,7 @@
     "start": "tsc --watch",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watch",
-    "validate": "yarn lint && yarn format:check && yarn test"
+    "validate": "npm run lint && npm run format:check && npm run test"
   },
   "husky": {
     "hooks": {
