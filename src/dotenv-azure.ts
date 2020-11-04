@@ -60,7 +60,10 @@ export default class DotenvAzure {
   async config(options: DotenvAzureConfigOptions = {}): Promise<DotenvAzureConfigOutput> {
     const { safe = false } = options
     const dotenvResult = dotenv.config(options)
-    const vars:Record<string, string | undefined> = {...(dotenvResult.parsed || {}), ...process.env}
+    const vars: Record<string, string | undefined> = {
+      ...(dotenvResult.parsed || {}),
+      ...process.env,
+    }
     const azureVars = await this.loadFromAzure(vars)
     const joinedVars = { ...azureVars, ...dotenvResult.parsed }
 
@@ -97,7 +100,6 @@ export default class DotenvAzure {
    * @returns an object with keys and values
    */
   async loadFromAzure(dotenvVars?: Record<string, string | undefined>): Promise<VariablesObject> {
-    // const vars = {...dotenvVars, ...process.env}
     const credentials = this.getAzureCredentials(dotenvVars)
     const appConfigClient = new AppConfigurationClient(credentials.connectionString)
     const labels = dotenvVars?.AZURE_APP_CONFIG_LABELS || ''
@@ -202,8 +204,7 @@ export default class DotenvAzure {
     )
   }
 
-  private getAzureCredentials(dotenvVars: Record<string, string | undefined> = {}): AzureCredentials {
-    const vars = { ...dotenvVars, ...process.env }
+  private getAzureCredentials(vars: Record<string, string | undefined> = {}): AzureCredentials {
     const connectionString = this.connectionString || vars.AZURE_APP_CONFIG_CONNECTION_STRING
     
     if (!connectionString) {
