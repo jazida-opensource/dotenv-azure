@@ -99,7 +99,11 @@ export default class DotenvAzure {
   async loadFromAzure(dotenvVars?: DotenvParseOutput): Promise<VariablesObject> {
     const credentials = this.getAzureCredentials(dotenvVars)
     const appConfigClient = new AppConfigurationClient(credentials.connectionString)
-    const { appConfigVars, keyVaultReferences } = await this.getAppConfigurations(appConfigClient)
+    const labels = dotenvVars?.AZURE_APP_CONFIG_LABELS || ''
+    const { appConfigVars, keyVaultReferences } = await this.getAppConfigurations(
+      appConfigClient,
+      labels
+    )
     const keyVaultSecrets = await this.getSecretsFromKeyVault(credentials, keyVaultReferences)
     return { ...appConfigVars, ...keyVaultSecrets }
   }
@@ -114,11 +118,14 @@ export default class DotenvAzure {
     }
   }
 
-  protected async getAppConfigurations(client: AppConfigurationClient): Promise<AppConfigurations> {
+  protected async getAppConfigurations(
+    client: AppConfigurationClient,
+    labels = ''
+  ): Promise<AppConfigurations> {
     const appConfigVars: VariablesObject = {}
     const keyVaultReferences: KeyVaultReferences = {}
 
-    for await (const config of client.listConfigurationSettings()) {
+    for await (const config of client.listConfigurationSettings({ labelFilter: labels })) {
       if (this.isKeyVaultReference(config)) {
         keyVaultReferences[config.key] = this.getKeyVaultReferenceInfo(config)
       } else {
