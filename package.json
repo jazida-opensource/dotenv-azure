@@ -1,6 +1,6 @@
 {
   "name": "dotenv-azure",
-  "version": "2.0.0",
+  "version": "2.0.3",
   "description": "Load environment variables from Azure's services App Configuration, Key Vault or a .env file",
   "keywords": [
     "azure",
