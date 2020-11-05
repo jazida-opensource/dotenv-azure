@@ -86,6 +86,8 @@ export default class DotenvAzure {
    */
   async parse(src: string, options?: DotenvParseOptions): Promise<DotenvAzureParseOutput> {
     const dotenvVars = dotenv.parse(src, options)
+    dotenvVars.AZURE_APP_CONFIG_LABELS = dotenvVars.AZURE_APP_CONFIG_LABELS ? dotenvVars.AZURE_APP_CONFIG_LABELS : process.env.AZURE_APP_CONFIG_LABELS || ''
+    dotenvVars.AZURE_APP_CONFIG_CONNECTION_STRING = dotenvVars.AZURE_APP_CONFIG_CONNECTION_STRING ? dotenvVars.AZURE_APP_CONFIG_CONNECTION_STRING : process.env.AZURE_APP_CONFIG_CONNECTION_STRING || ''
     const azureVars = await this.loadFromAzure(dotenvVars)
     return { ...azureVars, ...dotenvVars }
   }
