@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import { URL } from 'url'
 import Bottleneck from 'bottleneck'
-import dotenv, { DotenvParseOptions, DotenvParseOutput } from 'dotenv'
+import dotenv, { DotenvParseOptions } from 'dotenv'
 import { ManagedIdentityCredential, ClientSecretCredential } from '@azure/identity'
 import { SecretClient } from '@azure/keyvault-secrets'
 import { AppConfigurationClient, ConfigurationSetting } from '@azure/app-configuration'
@@ -60,8 +60,8 @@ export default class DotenvAzure {
   async config(options: DotenvAzureConfigOptions = {}): Promise<DotenvAzureConfigOutput> {
     const { safe = false } = options
     const dotenvResult = dotenv.config(options)
-
-    const azureVars = await this.loadFromAzure(dotenvResult.parsed)
+    const vars:Record<string, string | undefined> = {...(dotenvResult.parsed || {}), ...process.env}
+    const azureVars = await this.loadFromAzure(vars)
     const joinedVars = { ...azureVars, ...dotenvResult.parsed }
 
     populateProcessEnv(azureVars)
@@ -86,8 +86,6 @@ export default class DotenvAzure {
    */
   async parse(src: string, options?: DotenvParseOptions): Promise<DotenvAzureParseOutput> {
     const dotenvVars = dotenv.parse(src, options)
-    dotenvVars.AZURE_APP_CONFIG_LABELS = dotenvVars.AZURE_APP_CONFIG_LABELS ? dotenvVars.AZURE_APP_CONFIG_LABELS : process.env.AZURE_APP_CONFIG_LABELS || ''
-    dotenvVars.AZURE_APP_CONFIG_CONNECTION_STRING = dotenvVars.AZURE_APP_CONFIG_CONNECTION_STRING ? dotenvVars.AZURE_APP_CONFIG_CONNECTION_STRING : process.env.AZURE_APP_CONFIG_CONNECTION_STRING || ''
     const azureVars = await this.loadFromAzure(dotenvVars)
     return { ...azureVars, ...dotenvVars }
   }
@@ -98,7 +96,8 @@ export default class DotenvAzure {
    * @param dotenvVars - dotenv parse() output containing azure credentials variables
    * @returns an object with keys and values
    */
-  async loadFromAzure(dotenvVars?: DotenvParseOutput): Promise<VariablesObject> {
+  async loadFromAzure(dotenvVars?: Record<string, string | undefined>): Promise<VariablesObject> {
+    // const vars = {...dotenvVars, ...process.env}
     const credentials = this.getAzureCredentials(dotenvVars)
     const appConfigClient = new AppConfigurationClient(credentials.connectionString)
     const labels = dotenvVars?.AZURE_APP_CONFIG_LABELS || ''
@@ -203,10 +202,10 @@ export default class DotenvAzure {
     )
   }
 
-  private getAzureCredentials(dotenvVars: DotenvParseOutput = {}): AzureCredentials {
+  private getAzureCredentials(dotenvVars: Record<string, string | undefined> = {}): AzureCredentials {
     const vars = { ...dotenvVars, ...process.env }
     const connectionString = this.connectionString || vars.AZURE_APP_CONFIG_CONNECTION_STRING
-
+    
     if (!connectionString) {
       throw new MissingAppConfigCredentialsError()
     }
