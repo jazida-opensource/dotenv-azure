@@ -76,7 +76,7 @@
   },
   "dependencies": {
     "@azure/app-configuration": "1.1.0",
-    "@azure/identity": "1.1.0",
+    "@azure/identity": "1.2.1",
     "@azure/keyvault-secrets": "4.1.0",
     "bottleneck": "^2.19.5",
     "dotenv": "^8.2.0",
