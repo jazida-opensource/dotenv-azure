@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>dotenv-azure | dotenv-azure</title>
+	<title>default | dotenv-azure</title>
 	<meta name="description" content="Documentation for dotenv-azure">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">:root {
@@ -2674,7 +2674,7 @@ img {
 		<div class="container">
 			<div class="table-wrap">
 				<div class="table-cell">
-					<strong><a href="index.html">dotenv-azure</a></strong>
+					<strong><a href="../index.html">dotenv-azure</a></strong>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -2705,205 +2705,494 @@ img {
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class=" tsd-kind-reference">
-			<a href="modules.html#dotenvazure" class="tsd-kind-icon">Dotenv<wbr>Azure</a>
+			<a href="../modules.html#dotenvazure" class="tsd-kind-icon">Dotenv<wbr>Azure</a>
 		</li>
-		<li class=" tsd-kind-class">
-			<a href="classes/default.html" class="tsd-kind-icon">default</a>
+		<li class="current tsd-kind-class">
+			<a href="default.html" class="tsd-kind-icon">default</a>
+			<ul>
+				<li class=" tsd-kind-constructor tsd-parent-kind-class">
+					<a href="default.html#constructor" class="tsd-kind-icon">constructor</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a href="default.html#clientid" class="tsd-kind-icon">client<wbr>Id</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a href="default.html#clientsecret" class="tsd-kind-icon">client<wbr>Secret</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a href="default.html#connectionstring" class="tsd-kind-icon">connection<wbr>String</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a href="default.html#keyvaultclients" class="tsd-kind-icon">key<wbr>Vault<wbr>Clients</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a href="default.html#keyvaultratelimitmintime" class="tsd-kind-icon">key<wbr>Vault<wbr>Rate<wbr>Limit<wbr>Min<wbr>Time</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a href="default.html#tenantid" class="tsd-kind-icon">tenant<wbr>Id</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="default.html#config" class="tsd-kind-icon">config</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a href="default.html#getappconfigurations" class="tsd-kind-icon">get<wbr>App<wbr>Configurations</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a href="default.html#getazurecredentials" class="tsd-kind-icon">get<wbr>Azure<wbr>Credentials</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a href="default.html#getkeyvaultclient" class="tsd-kind-icon">get<wbr>Key<wbr>Vault<wbr>Client</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a href="default.html#getkeyvaultreferenceinfo" class="tsd-kind-icon">get<wbr>Key<wbr>Vault<wbr>Reference<wbr>Info</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a href="default.html#getsecretsfromkeyvault" class="tsd-kind-icon">get<wbr>Secrets<wbr>From<wbr>Key<wbr>Vault</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a href="default.html#iskeyvaultreference" class="tsd-kind-icon">is<wbr>Key<wbr>Vault<wbr>Reference</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="default.html#loadfromazure" class="tsd-kind-icon">load<wbr>From<wbr>Azure</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="default.html#parse" class="tsd-kind-icon">parse</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a href="default.html#validatefromenvexample" class="tsd-kind-icon">validate<wbr>From<wbr>Env<wbr>Example</a>
+				</li>
+			</ul>
 		</li>
 	</ul>
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
-		<div class="tsd-panel tsd-typography">
-			<a href="#dotenv-azure" id="dotenv-azure" style="color: inherit; text-decoration: none;">
-				<h1>dotenv-azure</h1>
-			</a>
-			<p><a href="https://www.npmjs.com/package/dotenv-azure"><img src="https://img.shields.io/npm/v/dotenv-azure.svg" alt="NPM version"></a>
-				<img src="https://github.com/jazida-opensource/dotenv-azure/workflows/build/badge.svg" alt="Build status">
-				<a href="https://codecov.io/gh/jazida-opensource/dotenv-azure"><img src="https://codecov.io/gh/jazida-opensource/dotenv-azure/branch/master/graph/badge.svg" alt="codecov"></a>
-				<a href="https://github.com/feross/standard"><img src="https://img.shields.io/badge/code%20style-standard-brightgreen.svg" alt="js-standard-style"></a>
-				<a href="LICENSE"><img src="https://img.shields.io/github/license/jazida-opensource/dotenv-azure.svg" alt="LICENSE"></a>
-			<a href="https://conventionalcommits.org"><img src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg" alt="Conventional Commits"></a></p>
-			<p>Load environment variables from Azure&#39;s services <a href="https://azure.microsoft.com/en-us/services/app-configuration/">App Configuration</a>, <a href="https://azure.microsoft.com/en-us/services/key-vault/">Key Vault</a> or a <code>.env</code> file with an api similar to <a href="https://github.com/motdotla/dotenv">dotenv</a>.</p>
-			<a href="#why" id="why" style="color: inherit; text-decoration: none;">
-				<h2>Why</h2>
-			</a>
-			<p>Maybe you want to securely store secrets in <a href="https://azure.microsoft.com/en-us/services/key-vault/">Azure Key Vault</a>, but you also have configurations and feature flags stored in <a href="https://azure.microsoft.com/en-us/services/app-configuration/">Azure App Configuration</a> and you have to override some of those configurations with a <code>.env</code> file when running your app locally.</p>
-			<p>Or you have a complex configuration data that you want to centralize it somewhere. Azure recommends the usage of App Config for configuration and Key Vault for secrets. You can read more about it <a href="https://docs.microsoft.com/en-us/azure/azure-app-configuration/faq">here</a>.</p>
-			<p>With dotenv-azure you can easily retrieve your app&#39;s configurations and secrets from these 3 sources and merge them into <code>process.env</code>.</p>
-			<p>If you would like to know more about App Configuration and Key Vault, you may want to review <a href="https://docs.microsoft.com/en-us/azure/azure-app-configuration/overview">What is App Configuration?</a> and <a href="https://docs.microsoft.com/en-us/azure/key-vault/key-vault-overview">What is Azure Key Vault?</a></p>
-			<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
-				<h2>Getting started</h2>
-			</a>
-			<a href="#install-the-package" id="install-the-package" style="color: inherit; text-decoration: none;">
-				<h4>Install the package</h4>
-			</a>
-			<p>Install with npm</p>
-			<pre><code class="language-bash"><span style="color: #000000">npm install dotenv-azure</span>
-</code></pre>
-			<p>or with yarn</p>
-			<pre><code class="language-bash"><span style="color: #000000">yarn add dotenv-azure</span>
-</code></pre>
-			<a href="#configuring-app-configuration" id="configuring-app-configuration" style="color: inherit; text-decoration: none;">
-				<h4>Configuring App Configuration</h4>
-			</a>
-			<ol>
-				<li><a href="https://docs.microsoft.com/en-us/azure/azure-app-configuration/quickstart-aspnet-core-app#create-an-app-configuration-store">Create an app configuration store via Azure portal or CLI</a>.</li>
-				<li>Set <strong>AZURE_APP_CONFIG_CONNECTION_STRING</strong> as environment variable using bash or put them in a <code>.env</code> file:</li>
-			</ol>
-			<pre><code class="language-bash"><span style="color: #000000">AZURE_APP_CONFIG_CONNECTION_STRING=</span><span style="color: #A31515">&quot;generated-app-config-conneciton-string&quot;</span>
-</code></pre>
-			<a href="#configuring-key-vault" id="configuring-key-vault" style="color: inherit; text-decoration: none;">
-				<h4>Configuring Key Vault</h4>
-			</a>
-			<p>If you want to use Key Vault alongside with App Configuration you have to create a service principal and configure its access to Azure resources. You can follow <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal">this guide</a>.</p>
-			<p>Once you have <strong>AZURE_CLIENT_ID</strong>(appId), <strong>AZURE_CLIENT_SECRET</strong>(password) and <strong>AZURE_TENANT_ID</strong>(tenant) you have to set them as environment variables. You can do this with <code>export</code> in Bash or put them in a <code>.env</code> file:</p>
-			<blockquote>
-				<p>In production, if you are using <a href="https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview">Azure Managed Identities</a>, you don&#39;t have to set these variables.</p>
-			</blockquote>
-			<pre><code class="language-bash"><span style="color: #000000">AZURE_CLIENT_ID=</span><span style="color: #A31515">&quot;generated-app-ID&quot;</span>
-<span style="color: #000000">AZURE_CLIENT_SECRET=</span><span style="color: #A31515">&quot;random-password&quot;</span>
-<span style="color: #000000">AZURE_TENANT_ID=</span><span style="color: #A31515">&quot;tenant-ID&quot;</span>
-</code></pre>
-			<p>If you have a configuration in App Configuration with the content type <code>application/vnd.microsoft.appconfig.keyvaultref+json;charset=utf-8</code> then <code>dotenv-azure</code> will try to load it from Key Vault.</p>
-			<p>You can <a href="https://docs.microsoft.com/en-us/azure/azure-app-configuration/use-key-vault-references-dotnet-core">add a Key Vault reference</a> to App Configuration in the Azure portal:</p>
-			<ol>
-				<li>Sign in to the Azure portal. Select All resources, and then select the App Configuration store instance that you created in the quickstart</li>
-				<li>Select Configuration Explorer</li>
-				<li>Select + Create &gt; Key vault reference</li>
-			</ol>
-			<p>Now when you call the <code>.config()</code> method, the value of your key vault secret will be set to process.env:</p>
-			<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">DotenvAzure</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;dotenv-azure&#039;</span><span style="color: #000000">)</span>
-
-<span style="color: #0000FF">async</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">main</span><span style="color: #000000">() {</span>
-<span style="color: #000000">  </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">DotenvAzure</span><span style="color: #000000">().</span><span style="color: #795E26">config</span><span style="color: #000000">()</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #001080">env</span><span style="color: #000000">.</span><span style="color: #0070C1">DATABASE_URL</span><span style="color: #000000">) </span><span style="color: #008000">// prints your secret value</span>
-<span style="color: #000000">}</span>
-
-<span style="color: #795E26">main</span><span style="color: #000000">()</span>
-</code></pre>
-			<a href="#using-dotenv-azure-programmatically" id="using-dotenv-azure-programmatically" style="color: inherit; text-decoration: none;">
-				<h4>Using dotenv-azure programmatically</h4>
-			</a>
-			<p>You should call <code>dotenv-azure</code> before the initialization of your app. Since the method <code>.config()</code> returns a promise, you have to call it inside an async function:</p>
-			<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">DotenvAzure</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;dotenv-azure&#039;</span><span style="color: #000000">)</span>
-
-<span style="color: #0000FF">async</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">main</span><span style="color: #000000">() {</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">dotenvAzure</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">DotenvAzure</span><span style="color: #000000">()</span>
-<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">parsed</span><span style="color: #000000"> } = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">dotenvAzure</span><span style="color: #000000">.</span><span style="color: #795E26">config</span><span style="color: #000000">()</span>
-
-<span style="color: #000000">  </span><span style="color: #008000">// `parsed` is an object containing:</span>
-<span style="color: #000000">  </span><span style="color: #008000">//   - Your App Config configurations</span>
-<span style="color: #000000">  </span><span style="color: #008000">//   - Key Vault secrets</span>
-<span style="color: #000000">  </span><span style="color: #008000">//   - Environment variables defined in a .env file</span>
-<span style="color: #000000">  </span><span style="color: #008000">//   - and environment variables that weren&#039;t overwritten</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">parsed</span><span style="color: #000000">)</span>
-
-<span style="color: #000000">  </span><span style="color: #008000">// process.env now has the keys and values from the parsed result</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #001080">env</span><span style="color: #000000">)</span>
-
-<span style="color: #000000">  </span><span style="color: #008000">// start app</span>
-<span style="color: #000000">  </span><span style="color: #008000">// ...</span>
-<span style="color: #000000">}</span>
-
-<span style="color: #795E26">main</span><span style="color: #000000">()</span>
-</code></pre>
-			<a href="#preload-dotenv-azure" id="preload-dotenv-azure" style="color: inherit; text-decoration: none;">
-				<h4>Preload dotenv-azure</h4>
-			</a>
-			<p>You can use the <code>--require</code> (<code>-r</code>) <a href="https://nodejs.org/api/cli.html#cli_r_require_module">command line option</a> to preload <code>dotenv-azure</code>. By doing this, you do not need to require and load <code>dotenv-azure</code> in your application code.</p>
-			<pre><code class="language-bash"><span style="color: #000000">node -r dotenv-azure/config your_script.js</span>
-</code></pre>
-			<p>To enable <a href="https://jazida-opensource.github.io/dotenv-azure/interfaces/dotenvazureconfigoptions.html#safe">safe mode</a> you should require <code>config-safe</code>:</p>
-			<pre><code class="language-bash"><span style="color: #000000">node -r dotenv-azure/config-safe your_script.js</span>
-</code></pre>
-			<a href="#rules" id="rules" style="color: inherit; text-decoration: none;">
-				<h2>Rules</h2>
-			</a>
-			<p><code>dotenv-azure</code> uses <code>dotenv</code> under the covers, so the same <a href="https://github.com/motdotla/dotenv/blob/master/README.md#rules">rules</a> for <code>.env</code> files apply here as well.</p>
-			<p>When populating <code>process.env</code> <code>dotenv-azure</code> will follow these steps:</p>
-			<ol>
-				<li>Values within the process&#39;s environment (i.e. an environment variable exists) takes precedence over everything else.</li>
-				<li>For values defined in the <code>.env</code> file, and not present in the environemnt, <code>process.env</code> will be populated with those values.</li>
-				<li><code>dotenv-azure</code> will search for the required environment variables to access azure&#39;s services after loading variables from the <code>.env</code> file.</li>
-				<li>For values defined within the process&#39;s environment, in the <code>.env</code> file or in the Azure App Configuration, where the value is prefixed with <code>kv:</code> what follows is assumed to be the secret identifier of a secret stored in Key Vault, and so <code>dotenv-azure</code> will attempt to populate the value from Key Vault.</li>
-			</ol>
-			<a href="#options" id="options" style="color: inherit; text-decoration: none;">
-				<h2>Options</h2>
-			</a>
-			<p>You can pass a <code>safe</code> option to validate your variables from a <code>.env.example</code> file like <a href="https://github.com/rolodato/dotenv-safe">dotenv-safe</a>:</p>
-			<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">DotenvAzure</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;dotenv-azure&#039;</span><span style="color: #000000">)</span>
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">dotenvAzure</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">DotenvAzure</span><span style="color: #000000">()</span>
-
-<span style="color: #0000FF">async</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">main</span><span style="color: #000000">() {</span>
-<span style="color: #000000">  </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">dotenvAzure</span><span style="color: #000000">.</span><span style="color: #795E26">config</span><span style="color: #000000">({</span>
-<span style="color: #000000">    </span><span style="color: #001080">safe:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">allowEmptyValues:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #001080">example:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;./.my-env-example-filename&#039;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  })</span>
-<span style="color: #000000">}</span>
-
-<span style="color: #795E26">main</span><span style="color: #000000">()</span>
-</code></pre>
-			<p><code>.config()</code> and <code>.parse()</code> have the same options as <a href="https://github.com/motdotla/dotenv#options">dotenv</a> and <a href="https://github.com/rolodato/dotenv-safe#options">dotenv-safe</a></p>
-			<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
-				<h2>Documentation</h2>
-			</a>
-			<p>You can read the api documentation <a href="https://jazida-opensource.github.io/dotenv-azure">here</a>.</p>
-			<a href="#inspirations" id="inspirations" style="color: inherit; text-decoration: none;">
-				<h2>Inspirations</h2>
-			</a>
-			<ul>
-				<li><a href="https://github.com/motdotla/dotenv">dotenv</a></li>
-				<li><a href="https://github.com/rolodato/dotenv-safe">dotenv-safe</a></li>
-				<li><a href="https://github.com/martinpeck/dotenv-keyvault">dotenv-keyvault</a></li>
+		<section class="tsd-panel tsd-hierarchy">
+			<h3>Hierarchy</h3>
+			<ul class="tsd-hierarchy">
+				<li>
+					<span class="target">default</span>
+				</li>
 			</ul>
-			<a href="#contributors" id="contributors" style="color: inherit; text-decoration: none;">
-				<h2>Contributors</h2>
-			</a>
-			<p>This project follows the <a href="https://github.com/kentcdodds/all-contributors">all-contributors</a> specification. Contributions of any kind are welcome!</p>
-			<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-			<!-- prettier-ignore -->
-			<table>
-				<tr>
-					<td align="center"><a href="https://github.com/danielfsousa"><img src="https://avatars0.githubusercontent.com/u/11372312?v=4" width="100px;" alt="Daniel Sousa"/><br /><sub><b>Daniel Sousa</b></sub></a><br /><a href="https://github.com/jazida-opensource/dotenv-azure/commits?author=danielfsousa" title="Code">💻</a> <a href="https://github.com/jazida-opensource/dotenv-azure/commits?author=danielfsousa" title="Documentation">📖</a> <a href="#infra-danielfsousa" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-danielfsousa" title="Maintenance">🚧</a> <a href="https://github.com/jazida-opensource/dotenv-azure/commits?author=danielfsousa" title="Tests">⚠️</a></td>
-					<td align="center"><a href="http://maheshsasidharan.github.io"><img src="https://avatars2.githubusercontent.com/u/9265496?v=4" width="100px;" alt="Mahesh Sasidharan"/><br /><sub><b>Mahesh Sasidharan</b></sub></a><br /><a href="https://github.com/jazida-opensource/dotenv-azure/commits?author=MaheshSasidharan" title="Documentation">📖</a></td>
-				</tr>
-			</table>
-			<!-- ALL-CONTRIBUTORS-LIST:END -->
-		</div>
-		<div style="position:relative;"><a name="typedoc-main-index" class="tsd-anchor"></a></div>
+		</section>
 		<section class="tsd-panel-group tsd-index-group">
 			<h2>Index</h2>
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
-						<h3>References</h3>
+						<h3>Constructors</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-reference"><a href="modules.html#dotenvazure" class="tsd-kind-icon">Dotenv<wbr>Azure</a></li>
+							<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="default.html#constructor" class="tsd-kind-icon">constructor</a></li>
 						</ul>
 					</section>
-					<section class="tsd-index-section tsd-is-external">
-						<h3>Namespaces</h3>
+					<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-namespace tsd-is-external"><a href="modules/dotenv.html" class="tsd-kind-icon">dotenv</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="default.html#clientid" class="tsd-kind-icon">client<wbr>Id</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="default.html#clientsecret" class="tsd-kind-icon">client<wbr>Secret</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="default.html#connectionstring" class="tsd-kind-icon">connection<wbr>String</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="default.html#keyvaultclients" class="tsd-kind-icon">key<wbr>Vault<wbr>Clients</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="default.html#keyvaultratelimitmintime" class="tsd-kind-icon">key<wbr>Vault<wbr>Rate<wbr>Limit<wbr>Min<wbr>Time</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="default.html#tenantid" class="tsd-kind-icon">tenant<wbr>Id</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
-						<h3>Classes</h3>
+						<h3>Methods</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-class"><a href="classes/default.html" class="tsd-kind-icon">default</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="default.html#config" class="tsd-kind-icon">config</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="default.html#getappconfigurations" class="tsd-kind-icon">get<wbr>App<wbr>Configurations</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="default.html#getazurecredentials" class="tsd-kind-icon">get<wbr>Azure<wbr>Credentials</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="default.html#getkeyvaultclient" class="tsd-kind-icon">get<wbr>Key<wbr>Vault<wbr>Client</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="default.html#getkeyvaultreferenceinfo" class="tsd-kind-icon">get<wbr>Key<wbr>Vault<wbr>Reference<wbr>Info</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="default.html#getsecretsfromkeyvault" class="tsd-kind-icon">get<wbr>Secrets<wbr>From<wbr>Key<wbr>Vault</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="default.html#iskeyvaultreference" class="tsd-kind-icon">is<wbr>Key<wbr>Vault<wbr>Reference</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="default.html#loadfromazure" class="tsd-kind-icon">load<wbr>From<wbr>Azure</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="default.html#parse" class="tsd-kind-icon">parse</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="default.html#validatefromenvexample" class="tsd-kind-icon">validate<wbr>From<wbr>Env<wbr>Example</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
-			<h2>References</h2>
-			<section class="tsd-panel tsd-member tsd-kind-reference">
-				<a name="dotenvazure" class="tsd-anchor"></a>
-				<h3>Dotenv<wbr>Azure</h3>
-				Renames and exports <a href="classes/default.html">default</a>
+			<h2>Constructors</h2>
+			<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+				<a name="constructor" class="tsd-anchor"></a>
+				<h3>constructor</h3>
+				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">new default<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">DotenvAzureOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/d6d7acf/src/dotenv-azure.ts#L34">src/dotenv-azure.ts:34</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Initializes a new instance of the DotenvAzure class.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>__namedParameters: <span class="tsd-signature-type">DotenvAzureOptions</span><span class="tsd-signature-symbol"> = {}</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h4>
+					</li>
+				</ul>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+			<h2>Properties</h2>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+				<a name="clientid" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> client<wbr>Id</h3>
+				<div class="tsd-signature tsd-kind-icon">client<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/d6d7acf/src/dotenv-azure.ts#L30">src/dotenv-azure.ts:30</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+				<a name="clientsecret" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> client<wbr>Secret</h3>
+				<div class="tsd-signature tsd-kind-icon">client<wbr>Secret<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/d6d7acf/src/dotenv-azure.ts#L31">src/dotenv-azure.ts:31</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+				<a name="connectionstring" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> connection<wbr>String</h3>
+				<div class="tsd-signature tsd-kind-icon">connection<wbr>String<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/d6d7acf/src/dotenv-azure.ts#L28">src/dotenv-azure.ts:28</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+				<a name="keyvaultclients" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> key<wbr>Vault<wbr>Clients</h3>
+				<div class="tsd-signature tsd-kind-icon">key<wbr>Vault<wbr>Clients<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/d6d7acf/src/dotenv-azure.ts#L32">src/dotenv-azure.ts:32</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-type-declaration">
+					<h4>Type declaration</h4>
+					<ul class="tsd-parameters">
+						<li class="tsd-parameter-index-signature">
+							<h5><span class="tsd-signature-symbol">[</span>vaultURL: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">SecretClient</span></h5>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+				<a name="keyvaultratelimitmintime" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> key<wbr>Vault<wbr>Rate<wbr>Limit<wbr>Min<wbr>Time</h3>
+				<div class="tsd-signature tsd-kind-icon">key<wbr>Vault<wbr>Rate<wbr>Limit<wbr>Min<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/d6d7acf/src/dotenv-azure.ts#L27">src/dotenv-azure.ts:27</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+				<a name="tenantid" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> tenant<wbr>Id</h3>
+				<div class="tsd-signature tsd-kind-icon">tenant<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/d6d7acf/src/dotenv-azure.ts#L29">src/dotenv-azure.ts:29</a></li>
+					</ul>
+				</aside>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Methods</h2>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="config" class="tsd-anchor"></a>
+				<h3>config</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">DotenvAzureConfigOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">DotenvAzureConfigOutput</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/d6d7acf/src/dotenv-azure.ts#L60">src/dotenv-azure.ts:60</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Loads Azure App Configuration and Key Vault variables
+									and <code>.env</code> file contents into <a href="https://nodejs.org/api/process.html#process_process_env" class="external"><code>process.env</code></a>.
+								Example: &#39;KEY=value&#39; becomes { parsed: { KEY: &#39;value&#39; } }</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>options: <span class="tsd-signature-type">DotenvAzureConfigOptions</span><span class="tsd-signature-symbol"> = {}</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>controls behavior</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">DotenvAzureConfigOutput</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+				<a name="getappconfigurations" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>App<wbr>Configurations</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>App<wbr>Configurations<span class="tsd-signature-symbol">(</span>client<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AppConfigurationClient</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AppConfigurations</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/d6d7acf/src/dotenv-azure.ts#L117">src/dotenv-azure.ts:117</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>client: <span class="tsd-signature-type">AppConfigurationClient</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">AppConfigurations</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+				<a name="getazurecredentials" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> get<wbr>Azure<wbr>Credentials</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Azure<wbr>Credentials<span class="tsd-signature-symbol">(</span>dotenvVars<span class="tsd-signature-symbol">?: </span><a href="../interfaces/dotenv.dotenvparseoutput.html" class="tsd-signature-type" data-tsd-kind="Interface">DotenvParseOutput</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AzureCredentials</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/d6d7acf/src/dotenv-azure.ts#L197">src/dotenv-azure.ts:197</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>dotenvVars: <a href="../interfaces/dotenv.dotenvparseoutput.html" class="tsd-signature-type" data-tsd-kind="Interface">DotenvParseOutput</a><span class="tsd-signature-symbol"> = {}</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AzureCredentials</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+				<a name="getkeyvaultclient" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Key<wbr>Vault<wbr>Client</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Key<wbr>Vault<wbr>Client<span class="tsd-signature-symbol">(</span>credentials<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AzureCredentials</span>, vaultURL<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SecretClient</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/d6d7acf/src/dotenv-azure.ts#L155">src/dotenv-azure.ts:155</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>credentials: <span class="tsd-signature-type">AzureCredentials</span></h5>
+							</li>
+							<li>
+								<h5>vaultURL: <span class="tsd-signature-type">string</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">SecretClient</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+				<a name="getkeyvaultreferenceinfo" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Key<wbr>Vault<wbr>Reference<wbr>Info</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Key<wbr>Vault<wbr>Reference<wbr>Info<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ConfigurationSetting</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">KeyVaultReferenceInfo</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/d6d7acf/src/dotenv-azure.ts#L172">src/dotenv-azure.ts:172</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>__namedParameters: <span class="tsd-signature-type">ConfigurationSetting</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">KeyVaultReferenceInfo</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+				<a name="getsecretsfromkeyvault" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Secrets<wbr>From<wbr>Key<wbr>Vault</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Secrets<wbr>From<wbr>Key<wbr>Vault<span class="tsd-signature-symbol">(</span>credentials<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AzureCredentials</span>, vars<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">KeyVaultReferences</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">VariablesObject</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/d6d7acf/src/dotenv-azure.ts#L132">src/dotenv-azure.ts:132</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>credentials: <span class="tsd-signature-type">AzureCredentials</span></h5>
+							</li>
+							<li>
+								<h5>vars: <span class="tsd-signature-type">KeyVaultReferences</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">VariablesObject</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+				<a name="iskeyvaultreference" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> is<wbr>Key<wbr>Vault<wbr>Reference</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Key<wbr>Vault<wbr>Reference<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ConfigurationSetting</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/d6d7acf/src/dotenv-azure.ts#L191">src/dotenv-azure.ts:191</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>config: <span class="tsd-signature-type">ConfigurationSetting</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="loadfromazure" class="tsd-anchor"></a>
+				<h3>load<wbr>From<wbr>Azure</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">load<wbr>From<wbr>Azure<span class="tsd-signature-symbol">(</span>dotenvVars<span class="tsd-signature-symbol">?: </span><a href="../interfaces/dotenv.dotenvparseoutput.html" class="tsd-signature-type" data-tsd-kind="Interface">DotenvParseOutput</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">VariablesObject</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/d6d7acf/src/dotenv-azure.ts#L99">src/dotenv-azure.ts:99</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Loads your Azure App Configuration and Key Vault variables.
+								It does not change <a href="https://nodejs.org/api/process.html#process_process_env" class="external"><code>process.env</code></a>.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> dotenvVars: <a href="../interfaces/dotenv.dotenvparseoutput.html" class="tsd-signature-type" data-tsd-kind="Interface">DotenvParseOutput</a></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>dotenv parse() output containing azure credentials variables</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">VariablesObject</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>an object with keys and values</p>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="parse" class="tsd-anchor"></a>
+				<h3>parse</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">parse<span class="tsd-signature-symbol">(</span>src<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/dotenv.dotenvparseoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">DotenvParseOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">VariablesObject</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/d6d7acf/src/dotenv-azure.ts#L87">src/dotenv-azure.ts:87</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Parses a string or buffer in the .env file format into an object
+									and merges it with your Azure App Configuration and Key Vault variables.
+								It does not change <a href="https://nodejs.org/api/process.html#process_process_env" class="external"><code>process.env</code></a>.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>src: <span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>contents to be parsed</p>
+								</div>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/dotenv.dotenvparseoptions.html" class="tsd-signature-type" data-tsd-kind="Interface">DotenvParseOptions</a></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>additional options</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">VariablesObject</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>an object with keys and values</p>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+				<a name="validatefromenvexample" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagProtected">Protected</span> validate<wbr>From<wbr>Env<wbr>Example</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<li class="tsd-signature tsd-kind-icon">validate<wbr>From<wbr>Env<wbr>Example<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">DotenvAzureConfigOptions</span>, dotenvError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/jazida-opensource/dotenv-azure/blob/d6d7acf/src/dotenv-azure.ts#L107">src/dotenv-azure.ts:107</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>options: <span class="tsd-signature-type">DotenvAzureConfigOptions</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> dotenvError: <span class="tsd-signature-type">Error</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
 			</section>
 		</section>
 		<footer class="with-border-bottom">
