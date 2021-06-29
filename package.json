@@ -38,7 +38,7 @@
   ],
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "tsc && typedoc",
+    "build": "tsc && typedoc src/dotenv-azure.ts",
     "commit": "git-cz",
     "coverage": "codecov",
     "deploy-docs": "ts-node tools/gh-pages-publish",
