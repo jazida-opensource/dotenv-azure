@@ -45,12 +45,12 @@
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "lint": "eslint . --ext .ts",
+    "prepare": "husky install",
     "report-coverage": "cat ./coverage/lcov.info | coveralls",
     "start": "tsc --watch",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watch",
-    "validate": "npm run lint && npm run format:check && npm run test",
-    "prepare": "husky install"
+    "validate": "npm run lint && npm run format:check && npm run test"
   },
   "commitlint": {
     "extends": [
