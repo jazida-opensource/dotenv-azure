@@ -19,6 +19,7 @@ const mockReadFileSync = readFileSync as jest.Mock
 describe('DotenvAzure', () => {
   const OLD_ENV = process.env
   const AZURE_APP_CONFIG_CONNECTION_STRING = 'app-config-conneciton-string'
+  const AZURE_APP_CONFIG_LABELS = 'app-config-labels'
   const AZURE_TENANT_ID = 'tenant-id'
   const AZURE_CLIENT_ID = 'client-id'
   const AZURE_CLIENT_SECRET = 'client-secret'
@@ -40,6 +41,12 @@ describe('DotenvAzure', () => {
   describe('config()', () => {
     it('does not throw when AZURE_APP_CONFIG_CONNECTION_STRING is defined', async () => {
       process.env = { ...OLD_ENV, AZURE_APP_CONFIG_CONNECTION_STRING }
+      const dotenvAzure = new DotenvAzure()
+      expect(await dotenvAzure.config()).toBeDefined()
+    })
+
+    it('does not throw when AZURE_APP_CONFIG_LABELS is defined', async () => {
+      process.env = { ...OLD_ENV, AZURE_APP_CONFIG_CONNECTION_STRING, AZURE_APP_CONFIG_LABELS }
       const dotenvAzure = new DotenvAzure()
       expect(await dotenvAzure.config()).toBeDefined()
     })

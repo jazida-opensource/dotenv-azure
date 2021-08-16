@@ -18,6 +18,7 @@ export const appConfigListMock = jest.fn(() =>
       isReadOnly: false,
       key: 'APP_CONFIG_VAR',
       value: 'ok',
+      label: 'the-label',
     },
     {
       isReadOnly: true,

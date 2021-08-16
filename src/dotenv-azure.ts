@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import { URL } from 'url'
 import Bottleneck from 'bottleneck'
-import dotenv, { DotenvParseOptions, DotenvParseOutput } from 'dotenv'
+import dotenv, { DotenvParseOptions } from 'dotenv'
 import { ManagedIdentityCredential, ClientSecretCredential } from '@azure/identity'
 import { SecretClient } from '@azure/keyvault-secrets'
 import { AppConfigurationClient, ConfigurationSetting } from '@azure/app-configuration'
@@ -60,8 +60,11 @@ export default class DotenvAzure {
   async config(options: DotenvAzureConfigOptions = {}): Promise<DotenvAzureConfigOutput> {
     const { safe = false } = options
     const dotenvResult = dotenv.config(options)
-
-    const azureVars = await this.loadFromAzure(dotenvResult.parsed)
+    const vars: Record<string, string | undefined> = {
+      ...(dotenvResult.parsed || {}),
+      ...process.env,
+    }
+    const azureVars = await this.loadFromAzure(vars)
     const joinedVars = { ...azureVars, ...dotenvResult.parsed }
 
     populateProcessEnv(azureVars)
@@ -96,10 +99,14 @@ export default class DotenvAzure {
    * @param dotenvVars - dotenv parse() output containing azure credentials variables
    * @returns an object with keys and values
    */
-  async loadFromAzure(dotenvVars?: DotenvParseOutput): Promise<VariablesObject> {
+  async loadFromAzure(dotenvVars?: Record<string, string | undefined>): Promise<VariablesObject> {
     const credentials = this.getAzureCredentials(dotenvVars)
     const appConfigClient = new AppConfigurationClient(credentials.connectionString)
-    const { appConfigVars, keyVaultReferences } = await this.getAppConfigurations(appConfigClient)
+    const labels = dotenvVars?.AZURE_APP_CONFIG_LABELS || ''
+    const { appConfigVars, keyVaultReferences } = await this.getAppConfigurations(
+      appConfigClient,
+      labels
+    )
     const keyVaultSecrets = await this.getSecretsFromKeyVault(credentials, keyVaultReferences)
     return { ...appConfigVars, ...keyVaultSecrets }
   }
@@ -114,11 +121,14 @@ export default class DotenvAzure {
     }
   }
 
-  protected async getAppConfigurations(client: AppConfigurationClient): Promise<AppConfigurations> {
+  protected async getAppConfigurations(
+    client: AppConfigurationClient,
+    labels = ''
+  ): Promise<AppConfigurations> {
     const appConfigVars: VariablesObject = {}
     const keyVaultReferences: KeyVaultReferences = {}
 
-    for await (const config of client.listConfigurationSettings()) {
+    for await (const config of client.listConfigurationSettings({ labelFilter: labels })) {
       if (this.isKeyVaultReference(config)) {
         keyVaultReferences[config.key] = this.getKeyVaultReferenceInfo(config)
       } else {
@@ -194,10 +204,9 @@ export default class DotenvAzure {
     )
   }
 
-  private getAzureCredentials(dotenvVars: DotenvParseOutput = {}): AzureCredentials {
-    const vars = { ...dotenvVars, ...process.env }
+  private getAzureCredentials(vars: Record<string, string | undefined> = {}): AzureCredentials {
     const connectionString = this.connectionString || vars.AZURE_APP_CONFIG_CONNECTION_STRING
-
+    
     if (!connectionString) {
       throw new MissingAppConfigCredentialsError()
     }
