@@ -79,7 +79,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
-    "@commitlint/config-conventional": "^12.1.4",
+    "@commitlint/config-conventional": "^16.0.0",
     "@danielfsousa/prettier-config": "^1.1.0",
     "@types/dotenv": "^8.2.0",
     "@types/jest": "^26.0.15",
