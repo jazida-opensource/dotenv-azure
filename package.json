@@ -83,7 +83,7 @@
     "@danielfsousa/prettier-config": "^1.1.0",
     "@types/dotenv": "^8.2.0",
     "@types/jest": "^26.0.15",
-    "@types/node": "^14.0.6",
+    "@types/node": "^18.0.3",
     "@typescript-eslint/eslint-plugin": "^2.6.1",
     "@typescript-eslint/parser": "^2.6.1",
     "codecov": "^3.6.1",
