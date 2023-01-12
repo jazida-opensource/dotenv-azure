@@ -7,8 +7,9 @@ import {
   MissingEnvVarsError,
 } from '../src/errors'
 
-const dotEnvVarsFileContent = 'DOTENV_VAR=ok'
-const dotenvVars = { DOTENV_VAR: 'ok' }
+const dotEnvVarsFileContent = `DOTENV_VAR=ok
+AZURE_APP_CONFIG_LABEL=app-config-labels`
+const dotenvVars = { DOTENV_VAR: 'ok', AZURE_APP_CONFIG_LABEL: 'app-config-labels' }
 const appConfigVars = { APP_CONFIG_VAR: 'ok' }
 const keyVaultVars = { KEY_VAULT_VAR: 'ok' }
 const azureVars = { ...appConfigVars, ...keyVaultVars }
@@ -22,6 +23,7 @@ describe('DotenvAzure', () => {
   const AZURE_TENANT_ID = 'tenant-id'
   const AZURE_CLIENT_ID = 'client-id'
   const AZURE_CLIENT_SECRET = 'client-secret'
+  const AZURE_APP_CONFIG_LABEL = 'app-config-labels'
   const dotenvAzure = new DotenvAzure({
     connectionString: AZURE_APP_CONFIG_CONNECTION_STRING,
   })
@@ -42,6 +44,17 @@ describe('DotenvAzure', () => {
       process.env = { ...OLD_ENV, AZURE_APP_CONFIG_CONNECTION_STRING }
       const dotenvAzure = new DotenvAzure()
       expect(await dotenvAzure.config()).toBeDefined()
+    })
+
+    it('does not throw when AZURE_APP_CONFIG_LABEL is defined', async () => {
+      process.env = { ...OLD_ENV, AZURE_APP_CONFIG_CONNECTION_STRING, AZURE_APP_CONFIG_LABEL }
+      const dotenvAzure = new DotenvAzure()
+      expect(await dotenvAzure.config()).toBeDefined()
+      expect(appConfigListMock).toBeCalledWith(
+        expect.objectContaining({
+          labelFilter: AZURE_APP_CONFIG_LABEL,
+        })
+      )
     })
 
     it('throws when AZURE_APP_CONFIG_URL and AZURE_APP_CONFIG_CONNECTION_STRING are not defined', () => {

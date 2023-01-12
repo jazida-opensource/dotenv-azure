@@ -44,6 +44,12 @@ yarn add dotenv-azure
 AZURE_APP_CONFIG_CONNECTION_STRING="generated-app-config-conneciton-string"
 ```
 
+3. specify select label, set **AZURE_APP_CONFIG_LABEL** as environment variable using bash or put them in a `.env` file :
+
+```bash
+AZURE_APP_CONFIG_LABEL="app-config-label"
+```
+
 #### Configuring Key Vault
 
 If you want to use Key Vault alongside with App Configuration you have to create a service principal and configure its access to Azure resources. You can follow [this guide](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal).
