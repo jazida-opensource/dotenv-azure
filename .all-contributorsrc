@@ -26,6 +26,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "provTheodore Newell",
+      "name": "Teddy Newell",
+      "avatar_url": "https://avatars.githubusercontent.com/u/29579009?v=4",
+      "profile": "https://github.com/provTheodoreNewell",
+      "contributions": [
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7,
